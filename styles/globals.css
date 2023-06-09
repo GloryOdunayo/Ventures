@@ -4,15 +4,54 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  overflow-x: hidden;
 }
 
-a {
+/* a {
   color: inherit;
   text-decoration: none;
 }
 
 * {
   box-sizing: border-box;
+} */
+
+.account{
+  background: url(../public/images/landingPage/bground.png);
+  background-repeat: no-repeat;
+  /* width: 100%; */
+  /* z-index: 1; */
+}
+
+.bground{
+  background: url(../public/images/landingPage/bg.png);
+  background-repeat: no-repeat;
+  border-radius: 5px;
+}
+
+.img{
+  position: absolute;
+  height: 250px;
+  /* width: 600px; */
+  top: 1725px;
+  left: 444px;
+}
+
+.imgs{
+  position: relative;
+  width: 80px;
+  height: 150px;
+  top: -208px;
+  left: 15.5px;
+}
+
+.venture{
+  display: block;
+}
+
+.started{
+  /* margin-top: 50px !important; */
+  background: url(../public/images/landingPage/accountgroup.png);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,4 +62,12 @@ a {
     color: white;
     background: black;
   }
+  
+}
+
+@media (max-width :600px) {
+  .venture{
+    display: none;
+  }
+  
 }
