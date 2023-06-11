@@ -8,7 +8,7 @@ interface MyComponentProps {
     "Button 1": "/images/landingPage/books.png",
     "Button 2": "/images/landingPage/resources.png",
     "Button 3": "/images/landingPage/resource.png",
-    "Button 4": "/images/landingPage/coaching.png",
+    "Button 4": "/images/landingPage/accelerate.png",
     "Button 5": "/images/landingPage/community.png",
   };
 
@@ -47,11 +47,11 @@ interface MyComponentProps {
   
     return <>
         <div className='row justify-content-between mt-4'>
-            <div className='col-6'>
+            <div className='col-lg-6 col-sm-10'>
                 <h3 className='text-dark'>{title}</h3>
                 <p className='text-dark'>{content}</p>
             </div>
-            <div className='col-4 contentImage'>
+            <div className='col-lg-4 col-sm-10 contentImage'>
             <Image src={image} width={250} height={250} alt="Content Image" />
             </div>
         </div>

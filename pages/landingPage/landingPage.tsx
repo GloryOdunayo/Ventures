@@ -55,16 +55,16 @@ const LandingPage: React.FC<Props> = () => {
                 </div>
             </div>
             <div className='bg-light'>
-                <div className="col-10 ms-5 pb-5">
+                <div className="col-10 ms-lg-5 pb-5">
                     <div className='text-dark ms-5 ps-2 col-lg-7 col-sm-10'>
                         <h3>Discover, Connect and Grow</h3>
                         <p>We&apos;re a dynamic platform connecting ambitious founders with the resources, expertise, and networks they need to bring their visions to life.</p>
                     </div>
                 </div>
-                <div className='ps-5 py-5 bground row col-10 mx-auto mb-5'>
+                <div className='ps-lg-5 py-5 bground row col-10 mx-auto mb-5'>
                     <div className="row">
-                        <div className='col-lg-4 col-sm-12 ms-5 py-5'>
-                            <h2>Extensive Network</h2>
+                        <div className='col-lg-4 col-sm-12 ms-lg-5 py-5'>
+                            <h1>Extensive Network</h1>
                             <p className='fs-5'>Gain access to a vast network of like-minded individuals, industry experts, mentors, and potential investors.</p>
                         </div>
                         <div className='col-lg-5 col-sm-10 text-end ms-lg-5 ps-lg-5'>
@@ -123,7 +123,7 @@ const LandingPage: React.FC<Props> = () => {
                         <div className="account col-10">
                             <div className="text-dark p-3">
                                 <Image src={icon1} width={30} alt="" />
-                                <h5>Create an account</h5>
+                                <h5 className='mt-2'>Create an account</h5>
                                 <p>We only ask for your name, email, and password</p>
                                 <button className="btn px-2 text-white" style={{backgroundColor: "#5A27D5"}}>Venture with us</button>
                             </div>
@@ -155,19 +155,18 @@ const LandingPage: React.FC<Props> = () => {
                             <button className="btn px-2 text-white" style={{backgroundColor: "#5A27D5"}}>Venture with us</button>
                         </div>
                     </div>
-                    <hr />
                 </div>
-                <div className="bg-dark ps-lg-5 row justify-content-around">
-                    <div className="row ms-lg-5 ps-lg-5">
-                        <div className="col-2 d-flex">
+                <div className="bg-dark text-light row justify-content-around">
+                    <div className="row mx-auto col-10" style={{borderTop: "1px solid"}}>
+                        <div className="col-lg-2 col-sm-6 d-flex">
                             <Image src={logo} alt='logo' />
                             <span>Venture</span>
                         </div>
-                        <div className="col-4">
+                        <div className="col-lg-5 col-sm-10">
                             <p>© 2023 Venture nation. All rights reserved.</p>
                         </div>
-                        <div className="col-6">
-                            <div className="row">
+                        <div className="col-lg-5 col-sm-10">
+                            <div className="row justify-content-between">
                                 <div className='col-2 d-flex'>
                                     <Image src={twitter} alt='Twitter icon' width={20} className='pt-2'/>
                                     <span>Twitter</span>
