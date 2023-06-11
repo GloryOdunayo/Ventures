@@ -120,7 +120,7 @@ const LandingPage: React.FC<Props> = () => {
                 <div className="started px-4 py-5">
                     <div className="pb-4 row justify-content-center">
                         <h3 className="col-10">Get Started</h3>
-                        <div className="account col-10">
+                        <div className="account col-10 mx-auto p-5 rounded-4">
                             <div className="text-dark p-3">
                                 <Image src={icon1} width={30} alt="" />
                                 <h5 className='mt-2'>Create an account</h5>
@@ -129,18 +129,18 @@ const LandingPage: React.FC<Props> = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="row justify-content-between mx-auto text-dark col-10">
-                        <div className="col-lg-3 col-sm-8 bg-light rounded-2 mt-2 pt-2">
+                    <div className="row justify-content-between text-dark col-10 mx-auto">
+                        <div className="col-lg-3 col-sm-8 bg-light rounded-2 mt-2 p-5">
                             <Image src={icon2} width={30} alt=""/>
                             <h5 className='mt-2'>Create Your Profile</h5>
                             <p>Create a simple profile that tells us about you and your ventures.</p>
                         </div>
-                        <div className="col-lg-3 col-sm-8 bg-light rounded-2 mt-2 pt-2">
+                        <div className="col-lg-3 col-sm-8 bg-light rounded-2 mt-2 pt-2 p-5">
                         <Image src={icon3} width={30} alt="" />
                             <h5 className='mt-2'>Assess Your Venture</h5>
                             <p>Embark on a strategic journey of consistent growth with our expert recommendations.</p>
                         </div>
-                        <div className="col-lg-3 col-sm-8 bg-light rounded-2 mt-2 pt-2">
+                        <div className="col-lg-3 col-sm-8 bg-light rounded-2 mt-2 pt-2 p-5">
                         <Image src={icon4} width={30} alt="" />
                             <h5 className='mt-2'>Grow your venture</h5>
                             <p>Leverage our curated resources, expert services, and explore investment opportunities.</p>
