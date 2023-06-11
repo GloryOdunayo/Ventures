@@ -135,12 +135,12 @@ const LandingPage: React.FC<Props> = () => {
                             <h5 className='mt-2'>Create Your Profile</h5>
                             <p>Create a simple profile that tells us about you and your ventures.</p>
                         </div>
-                        <div className="col-lg-3 col-sm-8 bg-light rounded-2 mt-2 pt-2 p-5">
+                        <div className="col-lg-3 col-sm-8 bg-light rounded-2 mt-2 p-5">
                         <Image src={icon3} width={30} alt="" />
                             <h5 className='mt-2'>Assess Your Venture</h5>
                             <p>Embark on a strategic journey of consistent growth with our expert recommendations.</p>
                         </div>
-                        <div className="col-lg-3 col-sm-8 bg-light rounded-2 mt-2 pt-2 p-5">
+                        <div className="col-lg-3 col-sm-8 bg-light rounded-2 mt-2 p-5">
                         <Image src={icon4} width={30} alt="" />
                             <h5 className='mt-2'>Grow your venture</h5>
                             <p>Leverage our curated resources, expert services, and explore investment opportunities.</p>
