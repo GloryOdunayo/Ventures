@@ -63,7 +63,7 @@ const LandingPage: React.FC<Props> = () => {
                 </div>
                 <div className='ps-lg-5 py-5 bground row col-10 mx-auto mb-5'>
                     <div className="row">
-                        <div className='col-lg-4 col-sm-12 ms-lg-5 py-5 text-light'>
+                        <div className='col-lg-4 col-sm-12 text-light'>
                             <h1>Extensive Network</h1>
                             <p className='fs-5'>Gain access to a vast network of like-minded individuals, industry experts, mentors, and potential investors.</p>
                         </div>
