@@ -63,7 +63,7 @@ const LandingPage: React.FC<Props> = () => {
                 </div>
                 <div className='ps-lg-5 py-5 bground row col-10 mx-auto mb-5'>
                     <div className="row">
-                        <div className='col-lg-4 col-sm-12 ms-lg-5 py-5'>
+                        <div className='col-lg-4 col-sm-12 ms-lg-5 py-5 text-light'>
                             <h1>Extensive Network</h1>
                             <p className='fs-5'>Gain access to a vast network of like-minded individuals, industry experts, mentors, and potential investors.</p>
                         </div>
@@ -119,7 +119,7 @@ const LandingPage: React.FC<Props> = () => {
                 </div>
                 <div className="started px-4 py-5">
                     <div className="pb-4 row justify-content-center">
-                        <h3 className="col-10">Get Started</h3>
+                        <h3 className="col-10 text-light">Get Started</h3>
                         <div className="account col-10 mx-auto p-5 rounded-4">
                             <div className="text-dark p-3">
                                 <Image src={icon1} width={30} alt="" />

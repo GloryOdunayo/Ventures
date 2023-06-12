@@ -29,7 +29,7 @@ body {
 
 .started{
   background: url(../public/images/landingPage/getstarted.png);
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
 }
 
 @media (prefers-color-scheme: dark) {
