@@ -2,8 +2,8 @@ export {}
 
 declare global {
     interface IPost {
-        id: number
-        title: string
-        body: string
+        fullname: string,
+        email: string,
+        password: string,
     }
 }
