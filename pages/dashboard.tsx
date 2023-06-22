@@ -243,7 +243,7 @@ const AddPost: React.FC = () => {
                                         <h5>Upcoming sessions</h5>
                                     </div>
                                     <div className={styles.section__session__body}>
-                                        <div className="p-2 shadow-sm px-4">
+                                        <div className="p-2 shadow-sm px-4 mb-3">
                                             <h6>Mentorship with <span>Gilda Charles</span></h6>
                                             <div className="d-flex justify-content-between">
                                                 <div className="d-flex">
@@ -256,7 +256,7 @@ const AddPost: React.FC = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="p-2 shadow-sm px-4">
+                                        <div className="p-2 shadow-sm px-4 mb-3">
                                             <h6>Mentorship with <span>James Mary</span></h6>
                                             <div className="d-flex justify-content-between">
                                                 <div className="d-flex">

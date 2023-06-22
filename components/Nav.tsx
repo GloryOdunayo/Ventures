@@ -47,27 +47,27 @@ const Nav: React.FC = () => {
                     </button>
                     <div className="collapse navbar-collapse justify-content-center justify-content-md-end" id="navbar-menu">
                         <ul className="navbar-nav">
-                            <li className="nav-item flex-row justify-content-start align-items-center pt-2">
+                            <li className="nav-item flex-row justify-content-start align-items-center pt-3">
                                 <a className="text-dark px-md-3 py-3 w-auto text-decoration-none " href="">
                                     Learning Hub
                                 </a>
                             </li>
-                            <li className="nav-item flex-row justify-content-start align-items-center pt-2">
+                            <li className="nav-item flex-row justify-content-start align-items-center pt-3">
                                 <a className="text-dark px-md-3 py-3 w-auto text-decoration-none " href="">
                                     Resources Hub
                                 </a>
                             </li>
-                            <li className="nav-item flex-row justify-content-start align-items-center pt-2">
+                            <li className="nav-item flex-row justify-content-start align-items-center pt-3">
                                 <a className="text-dark px-md-3 py-3 w-auto text-decoration-none " href="">
                                     Events
                                 </a>
                             </li>
-                            <li className="nav-item flex-row justify-content-start align-items-center pt-2">
+                            <li className="nav-item flex-row justify-content-start align-items-center pt-3">
                                 <a className="text-dark px-md-3 py-3 w-auto text-decoration-none " href="">
                                     Services
                                 </a>
                             </li>
-                            <li className="nav-item dropdown">
+                            <li className="nav-item dropdown pt-1">
                                 <a className="nav-link dropdown-toggle fw-bold border-left-1" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <Image src={profile} alt="Profile Image" width={35} height={35} className="border rounded-circle border-danger me-2"/>{data.fullname}
                                 </a>
