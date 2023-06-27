@@ -26,9 +26,11 @@ import love from '../public/images/dashboard/Vector.png';
 import logo from '../public/images/landingPage/nav-logo.png';
 import styles from '../styles/Dashboard.module.scss'
 import Link from 'next/link';
-import { GetServerSideProps } from 'next';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import SideNav from '../components/SideNav';
+import urban from '../public/images/dashboard/urban.png';
+import wild from '../public/images/dashboard/wild.png';
+import home from '../public/images/dashboard/home.png';
 
 let token: any;
 if (typeof window !== "undefined") {
@@ -36,19 +38,16 @@ if (typeof window !== "undefined") {
 }
 
 const AddPost: React.FC = () => {
-    const [data, setData] = React.useState<any>(null);
 
     React.useEffect(() => {
-        fetch("http://localhost:5000/user/dashboard", {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
+        axios.get("https://venturesnation.onrender.com/user/dashboard",{
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
         })
-        .then((res) => res.json())
-        .then((data) => {
-            setData(data);
-            localStorage.setItem('email', data.email);
-        });
+        .then((response: AxiosResponse) => {
+            localStorage.setItem('email', response.data.email);
+        })
     }, []);
     
     return (
@@ -105,7 +104,7 @@ const AddPost: React.FC = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="shadow-sm mt-lg-3 mt-sm-2">
+                                <div className="shadow-sm mt-2">
                                     <div className={styles.section__info__body}>
                                         <div className={styles.section__info__body__header}>
                                             <div className="d-flex justify-content-between">
@@ -116,7 +115,7 @@ const AddPost: React.FC = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="row ps-3 justify-content-around">
+                                        <div className="row justify-content-between px-4">
                                             <div className="col-md-3 col-sm-5 border-0 shadow-sm p-0">
                                                 <Image src={learn} className="card-img-top" alt="..." />
                                                 <div className="card-body">
@@ -167,8 +166,8 @@ const AddPost: React.FC = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="row justify-content-around">
-                                            <div className="col-sm-3 border-0 shadow-sm p-0">
+                                        <div className="row justify-content-between px-4">
+                                            <div className="col-md-3 col-sm-5 border-0 shadow-sm p-0">
                                                 <Image src={image1} className="card-img-top" alt="..." />
                                                 <div className="card-body">
                                                     <h6 className="card-title pt-3">Understanding your target customers. </h6>
@@ -189,7 +188,7 @@ const AddPost: React.FC = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-sm-3 border-0 shadow-sm p-0">
+                                            <div className="col-md-3 col-sm-5 border-0 shadow-sm p-0">
                                                 <Image src={image2} className="card-img-top" alt="..." />
                                                 <div className="card-body">
                                                     <h6 className="card-title pt-3">Understanding your target customers. </h6>
@@ -210,7 +209,7 @@ const AddPost: React.FC = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-sm-3 border-0 shadow-sm p-0">
+                                            <div className="col-md-3 col-sm-5 border-0 shadow-sm p-0">
                                                 <Image src={image3} className="card-img-top" alt="..." />
                                                 <div className="card-body">
                                                     <h6 className="card-title pt-3">Understanding your target customers. </h6>
@@ -237,7 +236,7 @@ const AddPost: React.FC = () => {
                             </div>
                         </div>
                         <div className="col-lg-4">
-                            <div className="shadow-sm px-3">
+                            <div className="shadow-sm px-3 mt-2">
                                 <div className={styles.section__session}>
                                     <div className={styles.section__session__header}>
                                         <h5>Upcoming sessions</h5>
@@ -248,11 +247,11 @@ const AddPost: React.FC = () => {
                                             <div className="d-flex justify-content-between">
                                                 <div className="d-flex">
                                                     <Image src={calender} alt='calender'/>
-                                                    <p>Wed, Jun 28</p>
+                                                    <p className='tym'>Wed, Jun 28</p>
                                                 </div>
                                                 <div className="d-flex">
                                                     <Image src={clock} alt='clock'/>
-                                                    <p>3:00 pm WAT</p>
+                                                    <p className='tym'>3:00 pm WAT</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -261,11 +260,11 @@ const AddPost: React.FC = () => {
                                             <div className="d-flex justify-content-between">
                                                 <div className="d-flex">
                                                     <Image src={calender} alt='calender'/>
-                                                    <p>Wed, Jun 28</p>
+                                                    <p className='tym'>Wed, Jun 28</p>
                                                 </div>
                                                 <div className="d-flex">
                                                     <Image src={clock} alt='clock'/>
-                                                    <p>3:00 pm WAT</p>
+                                                    <p className='tym'>3:00 pm WAT</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -274,16 +273,54 @@ const AddPost: React.FC = () => {
                                             <div className="d-flex justify-content-between">
                                                 <div className="d-flex">
                                                     <Image src={calender} alt='calender'/>
-                                                    <p>Wed, Jun 28</p>
+                                                    <p className='tym'>Wed, Jun 28</p>
                                                 </div>
                                                 <div className="d-flex">
                                                     <Image src={clock} alt='clock'/>
-                                                    <p>3:00 pm WAT</p>
+                                                    <p className='tym'>3:00 pm WAT</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className={styles.btn}>
                                             <button className="btn">View all Coaching Sessions</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="px-3 mt-5">
+                                <div className={styles.section__end}>
+                                        <div className={styles.section__session__header}>
+                                            <h5>Communities</h5>
+                                        </div>
+                                        <div className={styles.section__session__body}>
+                                            <div className="px-3 shadow-sm">
+                                                    <div className="d-flex">
+                                                        <Image src={urban} alt='Urban communities'/>
+                                                        <div>
+                                                            <p>UrbanCommunity</p>
+                                                            <p>325 Members</p>
+                                                        </div>
+                                                    </div>
+                                                <div>
+                                                </div>
+                                                    <div className="d-flex">
+                                                        <Image src={wild} alt='Wild Ones'/>
+                                                        <div>
+                                                            <p>Wild Ones</p>
+                                                            <p>2.4k Members</p>
+                                                        </div>
+                                                    </div>
+                                                <div>
+                                                </div>
+                                                    <div className="d-flex">
+                                                        <Image src={home} alt='Home Protectors'/>
+                                                        <div>
+                                                            <p>Home Protectors</p>
+                                                            <p>375 Members</p>
+                                                        </div>
+                                                    </div>
+                                                <div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

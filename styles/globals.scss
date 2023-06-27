@@ -11,16 +11,23 @@ body {
   margin-top: -8px;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-  
+.tym{
+  margin-top: -4px;
 }
+
+.activeNav{
+  color: #5A27D5 !important;
+}
+// @media (prefers-color-scheme: dark) {
+//   html {
+//     color-scheme: dark;
+//   }
+//   body {
+//     color: white;
+//     background: black;
+//   }
+  
+// }
 
 @media (max-width :800px) {
 

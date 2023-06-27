@@ -1,8 +1,7 @@
 .sidebar{
     position: fixed;
 	width: 180px;
-    padding-top: 2rem;
-	// transition: all 0.5s ease;
+    padding-top: 3.5rem;
 	height: 100%;
 	background: white;
     & ul {
@@ -32,12 +31,51 @@
     background-color: white;
     margin-top: 1.5rem;
     padding-left: 12rem;
-    padding-top: 3rem;
+    padding-top: 4rem;
 
     & .section__info{
+        & .section__info__profile{
+            padding: 1rem 0.5rem 2rem 1rem;
+            height: 100px;
+            background: url('/images/landingPage/bg.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
 
+            & .section__info__profile__image{
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                border: 2px solid white;
+                float: left;
+                margin-right: 1rem;
+                background-size: contain;
+                margin-top: 2rem;
+                background-color: white;
+            }
+        }
+
+        & #profile{
+            height: 30rem;
+            border: 1px solid red;
+        }
+
+        & .section__info__text{
+            border: 1px solid #5F27D3;
+            padding: 0.5rem;
+            border-radius: 5px;
+            margin-right: 10px;
+            color: #5F27D3;
+        }
+        & .skills{
+            // border: 1px solid #5F27D3;
+            padding: 5px;
+            border-radius: 20px;
+            margin-right: 10px;
+            background-color: #F8F5FF;
+        }
         & .section__info__body{
-            padding: 2rem 0 2rem 0;
+            padding: 0rem 0 2rem 0;
             & .section__info__body__header{
                 padding: 1rem 0.5rem 2rem 1rem;
             }
@@ -46,14 +84,67 @@
             }
         }
         & .section__info__end{
-            padding: 2rem 0 2rem 0;
+            padding: 0.5rem 0 2rem 0;
             & .section__info__end__header{
                 padding: 1rem 0.5rem 2rem 1rem;
+            }
+            & .section__info__end__venture{
+                height: 150px;
+                width: 100%;
+            }
+            & .section__info__end__venture__logo{
+                position: relative;
+                top: -11%;
+                left: 40%;
+                width: 5rem;
+                height: 5rem;
+                border-radius: 1rem;
+            }
+            & .venture__text{
+                position: relative;
+                top: -10%;
+                text-align: center;
+            }
+            & .venture__text__p{
+                position: relative;
+                top: -10%;
+                text-align: center;
+                padding: 0 1rem 0 1rem;
+            }
+            & .icons{
+                position: relative;
+                top: -8%;
+                display: flex;
+                padding-left: 1rem;
             }
         }
     }
     & .section__session{
-        padding-bottom: 4rem;
+        padding-bottom: 6rem;
+        & .section__session__header{
+            padding: 10px 5px 5px 20px;
+        }
+        & .section__session__body{
+            margin-bottom: 10px;
+            padding: 1rem;
+            & span {
+                color: #5A27D5;
+            }
+
+            & .btn {
+                background: linear-gradient(90.73deg, #5A27D5 0%, #5F27D3 32.36%, #AE2EC4 100%);
+                border-radius: 3px;
+                width: 220px;
+                margin-top: 2rem;
+                float: right;
+                & button {
+                    color: white;
+                }
+            }
+        }
+    }
+    & .section__end{
+        margin-top: 4rem;
         & .section__session__header{
             padding: 10px 5px 5px 20px;
         }
@@ -87,6 +178,6 @@
         display: none;
     }
     .section{
-        padding-left: 0;
+        padding: 0;
     }
 }

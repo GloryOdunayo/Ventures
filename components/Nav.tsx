@@ -18,7 +18,8 @@ const Nav: React.FC = () => {
             setData(response.data.result);
         })
         
-    }, []);
+    });
+    console.log(data);
     const logout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('email');
@@ -72,8 +73,8 @@ const Nav: React.FC = () => {
                                 <Image src={profile} alt="Profile Image" width={35} height={35} className="border rounded-circle border-danger me-2"/>{data.fullname}
                                 </a>
                                 <ul className="dropdown-menu border-0 shadow">
-                                    <li><a className="dropdown-item" href="/profile">Profile</a></li>
-                                    <li><a className="dropdown-item" onClick={logout}>Log out</a></li>
+                                    <li><Link className="dropdown-item" href="/profile">Profile</Link></li>
+                                    <li><Link className="dropdown-item" href='/signin' onClick={logout}>Log out</Link></li>
                                 </ul>
                             </li>
                         </ul>

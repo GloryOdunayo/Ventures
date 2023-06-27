@@ -2,27 +2,9 @@ import * as React from 'react'
 import Nav from '../components/Nav'
 import Head from 'next/head'
 import Image from 'next/image'
-import dashboard from '../public/images/dashboard/3dcube.png';
-import learning from '../public/images/dashboard/book.png';
-import resource from '../public/images/dashboard/resources.png';
 import profile from '../public/images/dashboard/frame.png';
-import community from '../public/images/dashboard/people.png';
-import message from '../public/images/dashboard/sms.png';
-import completed from '../public/images/dashboard/Checkbox.png';
-import communities from '../public/images/dashboard/communities.png';
-import progress from '../public/images/dashboard/course.png';
-import calender from '../public/images/dashboard/calendar.png';
-import clock from '../public/images/dashboard/clock.png';
-import strength from '../public/images/dashboard/strength.png';
-import learn from '../public/images/dashboard/learn.png';
-import time from '../public/images/dashboard/time.png';
-import learnings from '../public/images/dashboard/learning.png';
-import left from '../public/images/dashboard/left.png';
-import right from '../public/images/dashboard/right.png';
 import image1 from '../public/images/dashboard/image 1.png';
 import image2 from '../public/images/dashboard/image 2.png';
-import image3 from '../public/images/dashboard/image 3.png';
-import love from '../public/images/dashboard/Vector.png';
 import axios, { AxiosResponse } from "axios";
 import styles from '../styles/Dashboard.module.scss'
 import Link from 'next/link';
@@ -31,6 +13,19 @@ import linkedln from '../public/images/dashboard/linkedln.png';
 import facebook from '../public/images/dashboard/facebook.png';
 import twitter from '../public/images/dashboard/twitter.png';
 import instagram from '../public/images/dashboard/instagram.png';
+import share from '../public/images/dashboard/share.png';
+import phone from '../public/images/dashboard/call.png';
+import website from '../public/images/dashboard/web.png';
+import mail from '../public/images/dashboard/mail.png';
+import edit from '../public/images/dashboard/edit.png';
+import add from '../public/images/dashboard/add.png';
+import location from '../public/images/dashboard/location.png'
+import date from '../public/images/dashboard/date.png';
+import gender from '../public/images/dashboard/gender.png';
+import location2 from '../public/images/dashboard/location2.png'
+import team from '../public/images/dashboard/team.png';
+import company from '../public/images/dashboard/company.png';
+import company2 from '../public/images/dashboard/company2.png'
 
 let token: any;
 let email:any;
@@ -40,26 +35,13 @@ if (typeof window !== "undefined") {
 }
 
 const Profile: React.FC = () => {
-    const [data, setData] = React.useState<any>(null);
-    const [user, setUser] = React.useState<any>(null)
-
+    const [user, setUser] = React.useState<any>('')
     React.useEffect(() => {
-        fetch("http://localhost:5000/user/dashboard", {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-        })
-        .then((res) => res.json())
-        .then((data) => {
-            setData(data);
-            localStorage.setItem('email', data.email);
-        });
-        axios.post("http://localhost:5000/user/dashboard", {email})
+        axios.post("https://venturesnation.onrender.com/user/dashboard", {email})
         .then((response: AxiosResponse) => {
             setUser(response.data.result);
         })
     }, []);
-    console.log(user)
     
     return (
         <>
@@ -73,171 +55,97 @@ const Profile: React.FC = () => {
                 <Nav />
                 <SideNav />
                 <div className={styles.section}>
-                <div className="row">
-                        <div className="col-lg-8 mb-4">
+                    <div className="row">
+                        <div className="col-lg-9 mb-4">
                             <div className={styles.section__info}>
-                                <div className="shadow-sm p-2">
-                                    <div className={styles.section__info__header}>
-                                        <div className="row">
-                                            <div className="col-4">
-                                                <div className="d-flex">
-                                                    <div className="">
-                                                        <Image src= {completed} alt=""/>
-                                                    </div>
-                                                    <div className="">
-                                                        <h5>Completed</h5>
-                                                        <p>27</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-4">
-                                                <div className="d-flex">
-                                                    <div className="">
-                                                        <Image src= {progress} alt=""/>
-                                                    </div>
-                                                    <div className="">
-                                                        <h5>Course in Progress</h5>
-                                                        <p>27</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-4">
-                                                <div className="d-flex">
-                                                    <div className="">
-                                                        <Image src= {communities} alt=""/>
-                                                    </div>
-                                                    <div className="">
-                                                        <h5>Total Communities</h5>
-                                                        <p>27</p>
-                                                    </div>
-                                                </div>                                  
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="shadow-sm mt-lg-5 mt-sm-2">
-                                    <div className={styles.section__info__body}>
-                                        <div className={styles.section__info__body__header}>
-                                            <div className="d-flex justify-content-between">
-                                                <h5>Course in Progress</h5>
-                                                <div className="d-flex">
-                                                    <Image src={right} alt='Arrow Left' />
-                                                    <Image src={left} alt='Arrow Right' />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="row ps-3 justify-content-around">
-                                            <div className="col-md-3 col-sm-5 border-0 shadow-sm p-0">
-                                                <Image src={learn} className="card-img-top" alt="..." />
-                                                <div className="card-body">
-                                                    <h5 className="card-title">Understanding your target customers. </h5>
-                                                    <p className="card-text">Venture Nation.</p>
-                                                    <div className="d-flex justify-content-between">
-                                                        <Image src={strength} alt="Progress bar" width={100} height={3} />
-                                                        <p>37%</p>
-                                                    </div>
-                                                    <a href="#" className='text-decoration-none float-end'>Rate this course</a>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-3 col-sm-5 border-0 shadow-sm p-0">
-                                                <Image src={time} className="card-img-top" alt="..." />
-                                                <div className="card-body">
-                                                    <h5 className="card-title">Understanding your target customers. </h5>
-                                                    <p className="card-text">Venture Nation.</p>
-                                                    <div className="d-flex justify-content-between">
-                                                        <Image src={strength} alt="Progress bar" width={100} height={3} />
-                                                        <p>37%</p>
-                                                    </div>
-                                                    <a href="#" className='text-decoration-none float-end'>Rate this course</a>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-3 col-sm-5 border-0 shadow-sm p-0">
-                                                <Image src={learnings} className="card-img-top" alt="..." />
-                                                <div className="card-body">
-                                                    <h5 className="card-title">Understanding your target customers. </h5>
-                                                    <p className="card-text">Venture Nation.</p>
-                                                    <div className="d-flex justify-content-between">
-                                                        <Image src={strength} alt="Progress bar" width={100} height={3}/>
-                                                        <p>57%</p>
-                                                    </div>
-                                                    <a href="#" className='text-decoration-none float-end'>Rate this course</a>
-                                                </div>
-                                            </div>
+                                <div className="p-2">
+                                    <div className={styles.section__info__profile}>
+                                        <div className=''>
+                                            <Image src={profile} alt='Profile Image' className={styles.section__info__profile__image} />
                                         </div>
                                     </div>
                                 </div> 
-                                <div className="shadow-sm mt-lg-5 mt-sm-3">
+                                <div className="float-end">
+                                    <div className={styles.section__info__text}>
+                                        <Image src={edit} alt='share icon' className='me-2'/>
+                                        Edit Profile
+                                    </div>
+                                </div>
+                                <div className="px-4 pt-4">
+                                    <br />
+                                    <h5 className="">{user.fullname}</h5>
+                                    <p className="">{user.email}</p>
+                                    {user.bio && <p className="">{user.bio}</p>}
+                                    <div className="d-flex">
+                                        <div className="d-flex me-4">
+                                            <Image src={location} alt="location icon" className='mt-2' />
+                                            {user.location ? <p className='pt-1'>{user.location}</p> : <p className='pt-1'>Lagos, Nigeria</p>}
+                                        </div>
+                                        <div className="d-flex me-4">
+                                            <Image src={date} alt="date icon" className='mt-2' />
+                                            {user.date ? <p className='pt-1'>{user.date}</p> : <p className='pt-1'>dd/mm/yy</p>}
+                                        </div>
+                                        <div className="d-flex">
+                                            <Image src={gender} alt="gender icon" className='mt-2' />
+                                            {user.gender ? <p className='pt-1'>{user.gender}</p> : <p className='pt-1'>...</p>}
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <h4>Skills</h4>
+                                        <div className="d-flex">
+                                            <p className={styles.skills}>
+                                                Learning
+                                            </p>
+                                            <p className={styles.skills}>
+                                                Communication
+                                            </p>
+                                            <p className={styles.skills}>
+                                                Critical thinking
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="mt-lg-5 mt-sm-3">
                                     <div className={styles.section__info__end}>
                                         <div className={styles.section__info__end__header}>
                                             <div className="d-flex justify-content-between">
-                                                <h5>Recommended Course</h5>
-                                                <div className="d-flex">
-                                                    <Image src={right} alt='Arrow Left' />
-                                                    <Image src={left} alt='Arrow Right' />
+                                                <h5>My Ventures</h5>
+                                                <div className="float-end">
+                                                    <div className={styles.section__info__text}>
+                                                        <Image src={add} alt='share icon' className='me-2'/>
+                                                        Add Ventures
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="row justify-content-around">
-                                            <div className="col-sm-3 border-0 shadow-sm p-0">
-                                                <Image src={image1} className="card-img-top" alt="..." />
-                                                <div className="card-body">
-                                                    <h5 className="card-title">Understanding your target customers. </h5>
-                                                    <p className="card-text">Venture Nation.</p>
-                                                    <div className="d-flex justify-content-between">
-                                                        <div className="d-flex">
-                                                            <Image src={calender} alt="Calender" />
-                                                            <p>8 Lessons</p>
-                                                        </div>
-                                                        <div className="d-flex">
-                                                            <Image src={clock} alt="Clock" />
-                                                            <p>18 Hours</p>
-                                                        </div>
+                                        <div className="row justify-content-between px-4">
+                                            <div className="col-5 border-0 shadow-sm p-0">
+                                                <Image src={image2} alt='venture banner' className={styles.section__info__end__venture} />
+                                                <Image src={company} alt='venture logo' className={styles.section__info__end__venture__logo}/>
+                                                <h4 className={styles.venture__text}>Venture Name</h4>
+                                                <p className={styles.venture__text__p}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, eos ex dolor accusamus eaque omnis</p>
+                                                <div className={styles.icons}>
+                                                    <div className="d-flex me-4">
+                                                        <Image src={location2} alt='location icon' className='mt-2'/>
+                                                        {user.location ? <p className='pt-1'>{user.location}</p> : <p className='pt-1'>Lagos, Nigeria</p>}
                                                     </div>
-                                                    <div className="d-flex justify-content-between">
-                                                        <p className=''>Free</p>
-                                                        <Image src={love} alt='Favorite icon' />
+                                                    <div className="d-flex">
+                                                        <Image src={team} alt='team icon' className='mt-2'/> <span className='pt-1'>18 Team members</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-sm-3 border-0 shadow-sm p-0">
-                                                <Image src={image2} className="card-img-top" alt="..." />
-                                                <div className="card-body">
-                                                    <h5 className="card-title">Understanding your target customers. </h5>
-                                                    <p className="card-text">Venture Nation.</p>
-                                                    <div className="d-flex justify-content-between">
-                                                        <div className="d-flex">
-                                                            <Image src={calender} alt="Calender" />
-                                                            <p>8 Lessons</p>
-                                                        </div>
-                                                        <div className="d-flex">
-                                                            <Image src={clock} alt="Clock" />
-                                                            <p>18 Hours</p>
-                                                        </div>
+                                            <div className="col-5 border-0 shadow-sm p-0">
+                                                <Image src={image1} alt='venture banner' className={styles.section__info__end__venture} />
+                                                <Image src={company2} alt='venture logo' className={styles.section__info__end__venture__logo}/>
+                                                <h4 className={styles.venture__text}>Venture Name</h4>
+                                                <p className={styles.venture__text__p}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, eos ex dolor accusamus eaque omnis</p>
+                                                <div className={styles.icons}>
+                                                    <div className="d-flex me-4">
+                                                        <Image src={location2} alt='location icon' className='mt-2'/>
+                                                        {user.location ? <p className='pt-1'>{user.location}</p> : <p className='pt-1'>Lagos, Nigeria</p>}
                                                     </div>
-                                                    <div className="d-flex justify-content-between">
-                                                        <p className=''>Free</p>
-                                                        <Image src={love} alt='Favorite icon' />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-3 border-0 shadow-sm p-0">
-                                                <Image src={image3} className="card-img-top" alt="..." />
-                                                <div className="card-body">
-                                                    <h5 className="card-title">Understanding your target customers. </h5>
-                                                    <p className="card-text">Venture Nation.</p>
-                                                    <div className="d-flex justify-content-between">
-                                                        <div className="d-flex">
-                                                            <Image src={calender} alt="Calender" />
-                                                            <p>8 Lessons</p>
-                                                        </div>
-                                                        <div className="d-flex">
-                                                            <Image src={clock} alt="Clock" />
-                                                            <p>18 Hours</p>
-                                                        </div>
-                                                    </div>
-                                                    <div className="d-flex justify-content-between">
-                                                        <p className=''>Free</p>
-                                                        <Image src={love} alt='Favorite icon' />
+                                                    <div className="d-flex">
+                                                        <Image src={team} alt='team icon' className='mt-2'/> <span className='pt-1'>18 Team members</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -247,54 +155,69 @@ const Profile: React.FC = () => {
                             </div>
                         </div>
                         <div className="col-lg-3">
-                            <div className="shadow-sm">
-                                <div className={styles.section__session}>
+                            <div className="shadow-sm px-3">
+                                <div className=''>
                                     <div className={styles.section__session__header}>
-                                        <h5>Contact Information</h5>
+                                        <h5>Contact Info</h5>
                                     </div>
                                     <div className={styles.section__session__body}>
-                                    <div className="p-2 shadow-sm">
-                                            <h6>Mentorship with <span>Gilda Charles</span></h6>
+                                        <div className="p-2 px-4">
+                                            <Image src={phone} alt='phone icon'/> <span className='text-dark'>Phone</span>
                                             <div className="d-flex justify-content-between">
-                                                <div className="d-flex">
-                                                    <Image src={calender} alt='calender'/>
-                                                    <p>Wed, Jun 28</p>
-                                                </div>
-                                                <div className="d-flex">
-                                                    <Image src={clock} alt='clock'/>
-                                                    <p>3:00 pm WAT</p>
-                                                </div>
+                                                <p> {user.phoneNumber ? user.phoneNumber : '(+234) 809 000 0000'} </p>
+                                            </div>
+                                        </div>
+                                        <div className="p-2 px-4">
+                                            <Image src={website} alt='phone icon'/> <span className='text-dark'>Website</span>
+                                            <div className="d-flex justify-content-between">
+                                                <p> {user.website ? user.website : 'samplewebsite.com'} </p>
+                                            </div>
+                                        </div>
+                                        <div className="p-2 px-4 mb-3">
+                                            <Image src={mail} alt='phone icon'/> <span className='text-dark'>Email address</span>
+                                            <div className="d-flex justify-content-between">
+                                                <p> {user.email ? user.email : 'boomboom@gmail.com'} </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className={styles.section__session}>
+                            </div>
+                            <div className="px-3 mt-5">
+                                <div className={styles.section__end}>
                                     <div className={styles.section__session__header}>
                                         <h5>Socials</h5>
                                     </div>
-                                    <div className={styles.section__session__body}>
-                                        {/* <div className="px-3 shadow-sm">
-                                                <Image src={linkedln} alt='Linkedln icon'/>
-                                                Linkedln
-                                            <div>
-                                                <Link href={user.linkedln}>view likened profile</Link>
-                                            </div>
-                                                <Image src={twitter} alt='Twitter icon'/>
-                                                Twitter
-                                            <div>
-                                                <Link href={user.twitter}>view likened profile</Link>
-                                            </div>
-                                                <Image src={instagram} alt='Instagram icon'/>
-                                                Instagram
-                                            <div>
-                                                <Link href={user.instagram}>view likened profile</Link>
-                                            </div>
-                                                <Image src={facebook} alt='Facebook icon'/>
-                                                Facebook
-                                            <div>
-                                                <Link href={user.facebook}>view likened profile</Link>
-                                            </div>
-                                        </div> */}
+                                        <div className={styles.section__session__body}>
+                                            <div className="px-3 shadow-sm">
+                                                <div className="d-flex pb-4">
+                                                    <Image src={linkedln} alt='Linkedln icon'/>
+                                                    <div className='ps-2'>
+                                                        <p className='mb-0'>Linkedln</p>
+                                                        <Link href='{user.linkedln}'>view likened profile</Link> <Image src={share} alt='share icon'/>
+                                                    </div>
+                                                </div>
+                                                <div className="d-flex pb-4">
+                                                    <Image src={twitter} alt='Twitter icon'/>                                               
+                                                    <div className='ps-2'>
+                                                        <p className='mb-0'>Twitter</p>
+                                                        <Link href='{user.twitter}'>view twitter profile</Link> <Image src={share} alt='share icon'/>
+                                                    </div>
+                                                </div>
+                                                <div className="d-flex pb-4">
+                                                    <Image src={instagram} alt='Instagram icon'/>
+                                                    <div className='ps-2'>
+                                                        <p className='mb-0'>Instagram</p>
+                                                        <Link href='{user.instagram}'>view instagram profile</Link> <Image src={share} alt='share icon'/>
+                                                    </div>
+                                                </div>
+                                                <div className="d-flex pb-4">
+                                                    <Image src={facebook} alt='Facebook icon'/>
+                                                    <div className='ps-2'>
+                                                        <p className='mb-0'>Facebook</p>
+                                                        <Link href='{user.facebook}'>view facebook profile</Link> <Image src={share} alt='share icon'/>
+                                                    </div>
+                                                </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -6,90 +6,88 @@
         height: 100vh;
         padding: 0 0 5rem 5rem;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        // justify-content: center !important;
+        // align-items: center !important;
     }
     .form{
         padding: 1rem 8rem 0 5rem;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .logo{
-        // margin-top: 2rem;
-        text-align: center;
-    }
-    
-    .image{
-        transform: translate(20rem, -33px);
-    }
-    
-    .login{
-        text-decoration: none;
-        color: #5F27D3;
-    
-        &:hover {
-            text-decoration: underline;
+        position: relative;
+        top: 10%;
+        // justify-content: center;
+        // align-items: center;
+        & .logo{
+            // margin-top: 2rem;
+            text-align: center;
         }
-    }
-    
-    .password{
-        display: flex;
-        justify-content: space-between;
-        text-decoration: none;
-        margin-top: -10px;
-        margin-bottom: -20px;
-        color: #7E848E;
-    }
-
-    .fpassword{
-        color: #5A27D5;
-        margin-top: -10px;
-        & a{
+        & .password{
+            display: flex;
+            justify-content: space-between;
             text-decoration: none;
+            margin-top: -10px;
+            margin-bottom: -20px;
+            color: #7E848E;
+        }
+    
+        & .fpassword{
+            color: #5A27D5;
+            margin-top: -10px;
+            & a{
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        & .txt {
+            color: #7E848E;
+        }
+        
+        & .signup{
+            background: linear-gradient(90.73deg, #5A27D5 0%, #5F27D3 32.36%, #AE2EC4 100%);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        & .login{
+            text-decoration: none;
+            color: #5F27D3;
+        
             &:hover {
                 text-decoration: underline;
             }
         }
+        & .image{
+            // transform: translate(20rem, -33px);
+            position: relative;
+            top: -2rem;
+            left: 80%;
+        }
     }
     
-    .txt {
-        color: #7E848E;
-    }
     
-    .signup{
-        background: linear-gradient(90.73deg, #5A27D5 0%, #5F27D3 32.36%, #AE2EC4 100%);
-        border-radius: 8px;
-        text-align: center;
-        font-weight: bold;
-        font-size: 1.5rem;
-        margin-top: 1rem;
-    }
     .images{
         height: 100vh;
         width: 100%;
     }
     
     .imgs{
-        padding: 0 5rem;
         height: 100vh;
-        // width: 80%;
+        width: 100%;
         margin: auto;
     }
-    @media (max-width: 850px){
+    @media (max-width: 767px){
         .imgs{
-            padding: 0 5rem;
-            height: 60vh;
-            // width: 80%;
-            margin: auto;
+            display: none;
         }
         .images{
-            padding: 0 5rem;
-            height: 45vh;
-            // width: 80%;
-            margin: auto;
+            display: none;
         }
-        .image{
-            transform: translate(18rem, -33px);
+        .form{
+            position: relative;
+            top: 50%;
         }
     }

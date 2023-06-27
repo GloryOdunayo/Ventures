@@ -8,21 +8,6 @@ import resource from '../public/images/dashboard/resources.png';
 import profile from '../public/images/dashboard/frame.png';
 import community from '../public/images/dashboard/people.png';
 import message from '../public/images/dashboard/sms.png';
-import completed from '../public/images/dashboard/Checkbox.png';
-import communities from '../public/images/dashboard/communities.png';
-import progress from '../public/images/dashboard/course.png';
-import calender from '../public/images/dashboard/calendar.png';
-import clock from '../public/images/dashboard/clock.png';
-import strength from '../public/images/dashboard/strength.png';
-import learn from '../public/images/dashboard/learn.png';
-import time from '../public/images/dashboard/time.png';
-import learnings from '../public/images/dashboard/learning.png';
-import left from '../public/images/dashboard/left.png';
-import right from '../public/images/dashboard/right.png';
-import image1 from '../public/images/dashboard/image 1.png';
-import image2 from '../public/images/dashboard/image 2.png';
-import image3 from '../public/images/dashboard/image 3.png';
-import love from '../public/images/dashboard/Vector.png';
 import logo from '../public/images/landingPage/nav-logo.png';
 import styles from '../styles/Dashboard.module.scss'
 import Link from 'next/link';
@@ -48,7 +33,7 @@ const SideNav: React.FC = () => {
                             <li>
                                 <Link href="/dashboard" className='text-decoration-none'>
                                     <Image src={dashboard} alt="Dashboard" />
-                                    <span>Dashboard</span>
+                                    <span className='activeNav'>Dashboard</span>
                                 </Link>
                             </li>
                             <li>
