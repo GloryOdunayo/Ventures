@@ -18,7 +18,7 @@ const Nav: React.FC = () => {
             setData(response.data.result);
         })
         
-    });
+    },[]);
     console.log(data);
     const logout = () => {
         localStorage.removeItem('token');
