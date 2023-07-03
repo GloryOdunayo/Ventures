@@ -68,7 +68,7 @@ const Profile: React.FC = () => {
                                 <div className="float-end">
                                     <div className={styles.section__info__text}>
                                         <Image src={edit} alt='share icon' className='me-2'/>
-                                        Edit Profile
+                                        <Link href='/editProfile' className='text-decoration-none'>Edit Profile</Link>
                                     </div>
                                 </div>
                                 <div className="px-4 pt-4">
@@ -83,11 +83,11 @@ const Profile: React.FC = () => {
                                         </div>
                                         <div className="d-flex me-4">
                                             <Image src={date} alt="date icon" className='mt-2' />
-                                            {user.date ? <p className='pt-1'>{user.date}</p> : <p className='pt-1'>dd/mm/yy</p>}
+                                            {user.date ? <p className='pt-1'>{user.date}</p> : <p className='pt-1'>March 12, 1995</p>}
                                         </div>
                                         <div className="d-flex">
                                             <Image src={gender} alt="gender icon" className='mt-2' />
-                                            {user.gender ? <p className='pt-1'>{user.gender}</p> : <p className='pt-1'>...</p>}
+                                            {user.gender ? <p className='pt-1'>{user.gender}</p> : <p className='pt-1'>Male</p>}
                                         </div>
                                     </div>
                                     <div className="row">
@@ -164,7 +164,7 @@ const Profile: React.FC = () => {
                                         <div className="p-2 px-4">
                                             <Image src={phone} alt='phone icon'/> <span className='text-dark'>Phone</span>
                                             <div className="d-flex justify-content-between">
-                                                <p> {user.phoneNumber ? user.phoneNumber : '(+234) 809 000 0000'} </p>
+                                                <p className='ps-2'> {user.phoneNumber ? user.phoneNumber : '(+234) 809 000 0000'} </p>
                                             </div>
                                         </div>
                                         <div className="p-2 px-4">

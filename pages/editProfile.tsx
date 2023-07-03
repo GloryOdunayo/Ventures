@@ -89,12 +89,12 @@ const EditProfile: React.FC = () => {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="container col-md-6">
-                            <div className={styles.form}>
-                                <div className={styles.logo}>
-                                    <Link href="/"><Image src={logo} alt="Logo" /></Link>
-                                    <h1>Welcome Back!</h1>
+                            <div className=''>
+                                <div className=''>
+                                    <h1></h1>
                                     <p className={styles.txt}>Kindly input your details to access your account.</p>
                                 </div>
+                            </div>
                                 <form onSubmit={handleSubmit}>
                                     {errors && <p>{errors}</p>}
                                     <div className="form-group">
@@ -110,7 +110,6 @@ const EditProfile: React.FC = () => {
                                         <button type="submit" className="btn border-0 text-white" disabled={isLoading} >{isLoading ? "Updating..." : "Update"}</button>
                                     </div>
                                 </form>
-                            </div>
                         </div>
                     </div>
                 </div>

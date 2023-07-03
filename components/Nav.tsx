@@ -46,7 +46,7 @@ const Nav: React.FC = () => {
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div className="collapse navbar-collapse justify-content-center justify-content-md-end" id="navbar-menu">
+                    <div className="collapse navbar-collapse justify-content-center justify-content-sm-end" id="navbar-menu">
                         <ul className="navbar-nav">
                             <li className="nav-item flex-row justify-content-start align-items-center pt-3">
                                 <a className="text-dark px-md-3 py-3 w-auto text-decoration-none " href="">

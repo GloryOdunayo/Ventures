@@ -34,6 +34,12 @@
     padding-top: 4rem;
 
     & .section__info{
+        margin-bottom: 10px;
+        & .section__info__title{
+            box-shadow: 0px 0px 50px -5px rgba(0, 0, 0, 0.06);
+            margin-bottom: 3rem;
+            margin-left: 1rem;
+        }
         & .section__info__profile{
             padding: 1rem 0.5rem 2rem 1rem;
             height: 100px;
@@ -76,6 +82,7 @@
         }
         & .section__info__body{
             padding: 0rem 0 2rem 0;
+            // box-shadow: 0px 0px 50px -5px rgba(0, 0, 0, 0.06);
             & .section__info__body__header{
                 padding: 1rem 0.5rem 2rem 1rem;
             }
@@ -85,6 +92,9 @@
         }
         & .section__info__end{
             padding: 0.5rem 0 2rem 0;
+            box-shadow: 0px 0px 50px -5px rgba(0, 0, 0, 0.06);
+            margin-bottom: 2rem;
+            margin-left: 1rem;
             & .section__info__end__header{
                 padding: 1rem 0.5rem 2rem 1rem;
             }
@@ -144,7 +154,8 @@
         }
     }
     & .section__end{
-        margin-top: 4rem;
+        margin-top: 3rem;
+        padding: 1.5rem;
         & .section__session__header{
             padding: 10px 5px 5px 20px;
         }

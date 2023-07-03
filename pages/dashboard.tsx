@@ -2,12 +2,6 @@ import * as React from 'react'
 import Nav from '../components/Nav'
 import Head from 'next/head'
 import Image from 'next/image'
-import dashboard from '../public/images/dashboard/3dcube.png';
-import learning from '../public/images/dashboard/book.png';
-import resource from '../public/images/dashboard/resources.png';
-import profile from '../public/images/dashboard/frame.png';
-import community from '../public/images/dashboard/people.png';
-import message from '../public/images/dashboard/sms.png';
 import completed from '../public/images/dashboard/Checkbox.png';
 import communities from '../public/images/dashboard/communities.png';
 import progress from '../public/images/dashboard/course.png';
@@ -23,7 +17,6 @@ import image1 from '../public/images/dashboard/image 1.png';
 import image2 from '../public/images/dashboard/image 2.png';
 import image3 from '../public/images/dashboard/image 3.png';
 import love from '../public/images/dashboard/Vector.png';
-import logo from '../public/images/landingPage/nav-logo.png';
 import styles from '../styles/Dashboard.module.scss'
 import Link from 'next/link';
 import axios, { AxiosResponse } from 'axios';
@@ -37,7 +30,7 @@ if (typeof window !== "undefined") {
     token = localStorage.getItem("token");
 }
 
-const AddPost: React.FC = () => {
+const Dashboard: React.FC = () => {
 
     React.useEffect(() => {
         axios.get("https://venturesnation.onrender.com/user/dashboard",{
@@ -63,12 +56,12 @@ const AddPost: React.FC = () => {
                 <SideNav />
                 <div className={styles.section}>
                     <div className="row">
-                        <div className="col-lg-8 mb-4">
+                        <div className="col-lg-8">
                             <div className={styles.section__info}>
-                                <div className="p-2">
+                                <div className={styles.section__info__title}>
                                     <div className={styles.section__info__header}>
                                         <div className="row">
-                                            <div className="col-4">
+                                            <div className="col-md-4">
                                                 <div className="d-flex shadow-sm px-3 pt-3">
                                                     <div className="">
                                                         <Image src= {completed} alt=""/>
@@ -79,8 +72,8 @@ const AddPost: React.FC = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-4">
-                                                <div className="d-flex shadow-sm ps-2 pt-3">
+                                            <div className="col-md-4">
+                                                <div className="d-flex shadow-sm px-3 pt-3">
                                                     <div className="">
                                                         <Image src= {progress} alt=""/>
                                                     </div>
@@ -90,8 +83,8 @@ const AddPost: React.FC = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-4">
-                                                <div className="d-flex shadow-sm ps-2 pt-3">
+                                            <div className="col-md-4">
+                                                <div className="d-flex shadow-sm px-3 pt-3">
                                                     <div className="">
                                                         <Image src= {communities} alt=""/>
                                                     </div>
@@ -103,59 +96,74 @@ const AddPost: React.FC = () => {
                                             </div>
                                         </div>
                                     </div>
+                                    <div className="shadow mt-2">
+                                        <div className={styles.section__info__body}>
+                                            <div className={styles.section__info__body__header}>
+                                                <div className="d-flex justify-content-between">
+                                                    <h5>Course in Progress</h5>
+                                                    <div className="d-flex">
+                                                        <Image src={right} alt='Arrow Left' />
+                                                        <Image src={left} alt='Arrow Right' />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="row justify-content-between">
+                                                <div className="col-md-4 col-sm-6">
+                                                    <Image src={learn} className="card-img-top" alt="..." />
+                                                    <div className="card-body">
+                                                        <h6 className="card-title pt-3">Understanding your target customers. </h6>
+                                                        <p className="card-text">Venture Nation.</p>
+                                                            <Image src={strength} alt="Progress bar" style={
+                                                                {
+                                                                    width : '100%'
+                                                                }
+                                                            }/>
+                                                        <div className="d-flex justify-content-between">
+                                                            <p>Your Progress</p>
+                                                            <p>37%</p>
+                                                        </div>
+                                                        <a href="#" className='text-decoration-none float-end'>Rate this course</a>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-4 col-sm-6">
+                                                    <Image src={time} className="card-img-top" alt="..." />
+                                                    <div className="card-body">
+                                                        <h6 className="card-title pt-3">Understanding your target customers. </h6>
+                                                        <p className="card-text">Venture Nation.</p>
+                                                            <Image src={strength} alt="Progress bar" style={
+                                                                {
+                                                                    width : '100%'
+                                                                }
+                                                            }/>
+                                                        <div className="d-flex justify-content-between">
+                                                            <p>Your Progress</p>
+                                                            <p>37%</p>
+                                                        </div>
+                                                        <a href="#" className='text-decoration-none float-end'>Rate this course</a>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-4 col-sm-6">
+                                                    <Image src={learnings} className="card-img-top" alt="..." />
+                                                    <div className="card-body">
+                                                        <h6 className="card-title pt-3">Understanding your target customers. </h6>
+                                                        <p className="card-text">Venture Nation.</p>
+                                                            <Image src={strength} alt="Progress bar" style={
+                                                                {
+                                                                    width : '100%'
+                                                                }
+                                                            }/>
+                                                        <div className="d-flex justify-content-between">
+                                                            <p>Your Progress</p>
+                                                            <p>57%</p>
+                                                        </div>
+                                                        <a href="#" className='text-decoration-none float-end'>Rate this course</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
                                 </div>
-                                <div className="shadow-sm mt-2">
-                                    <div className={styles.section__info__body}>
-                                        <div className={styles.section__info__body__header}>
-                                            <div className="d-flex justify-content-between">
-                                                <h5>Course in Progress</h5>
-                                                <div className="d-flex">
-                                                    <Image src={right} alt='Arrow Left' />
-                                                    <Image src={left} alt='Arrow Right' />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="row justify-content-between px-4">
-                                            <div className="col-md-3 col-sm-5 border-0 shadow-sm p-0">
-                                                <Image src={learn} className="card-img-top" alt="..." />
-                                                <div className="card-body">
-                                                    <h6 className="card-title pt-3">Understanding your target customers. </h6>
-                                                    <p className="card-text">Venture Nation.</p>
-                                                    <div className="d-flex justify-content-between">
-                                                        <Image src={strength} alt="Progress bar" width={130} height={3} />
-                                                        <p className={styles.per}>37%</p>
-                                                    </div>
-                                                    <a href="#" className='text-decoration-none float-end'>Rate this course</a>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-3 col-sm-5 border-0 shadow-sm p-0">
-                                                <Image src={time} className="card-img-top" alt="..." />
-                                                <div className="card-body">
-                                                    <h6 className="card-title pt-3">Understanding your target customers. </h6>
-                                                    <p className="card-text">Venture Nation.</p>
-                                                    <div className="d-flex justify-content-between">
-                                                        <Image src={strength} alt="Progress bar" width={130} height={3} />
-                                                        <p className={styles.per}>37%</p>
-                                                    </div>
-                                                    <a href="#" className='text-decoration-none float-end'>Rate this course</a>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-3 col-sm-5 border-0 shadow-sm p-0">
-                                                <Image src={learnings} className="card-img-top" alt="..." />
-                                                <div className="card-body">
-                                                    <h6 className="card-title pt-3">Understanding your target customers. </h6>
-                                                    <p className="card-text">Venture Nation.</p>
-                                                    <div className="d-flex justify-content-between">
-                                                        <Image src={strength} alt="Progress bar" width={130} height={3}/>
-                                                        <p className={styles.per}>57%</p>
-                                                    </div>
-                                                    <a href="#" className='text-decoration-none float-end'>Rate this course</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> 
-                                <div className="shadow-sm mt-lg-5 mt-sm-3">
+                                <div className="shadow">
                                     <div className={styles.section__info__end}>
                                         <div className={styles.section__info__end__header}>
                                             <div className="d-flex justify-content-between">
@@ -166,8 +174,8 @@ const AddPost: React.FC = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="row justify-content-between px-4">
-                                            <div className="col-md-3 col-sm-5 border-0 shadow-sm p-0">
+                                        <div className="row justify-content-between">
+                                            <div className="col-md-4 col-sm-6">
                                                 <Image src={image1} className="card-img-top" alt="..." />
                                                 <div className="card-body">
                                                     <h6 className="card-title pt-3">Understanding your target customers. </h6>
@@ -188,7 +196,7 @@ const AddPost: React.FC = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-md-3 col-sm-5 border-0 shadow-sm p-0">
+                                            <div className="col-md-4 col-sm-6">
                                                 <Image src={image2} className="card-img-top" alt="..." />
                                                 <div className="card-body">
                                                     <h6 className="card-title pt-3">Understanding your target customers. </h6>
@@ -209,7 +217,7 @@ const AddPost: React.FC = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-md-3 col-sm-5 border-0 shadow-sm p-0">
+                                            <div className="col-md-4 col-sm-6">
                                                 <Image src={image3} className="card-img-top" alt="..." />
                                                 <div className="card-body">
                                                     <h6 className="card-title pt-3">Understanding your target customers. </h6>
@@ -235,11 +243,11 @@ const AddPost: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4">
-                            <div className="shadow-sm px-3 mt-2">
+                        <div className="col-lg-4 col-sm-8 mx-auto">
+                            <div className="shadow">
                                 <div className={styles.section__session}>
                                     <div className={styles.section__session__header}>
-                                        <h5>Upcoming sessions</h5>
+                                        <h5 className='mt-2'>Upcoming sessions</h5>
                                     </div>
                                     <div className={styles.section__session__body}>
                                         <div className="p-2 shadow-sm px-4 mb-3">
@@ -287,7 +295,7 @@ const AddPost: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="px-3 mt-5">
+                            <div className="shadow">
                                 <div className={styles.section__end}>
                                         <div className={styles.section__session__header}>
                                             <h5>Communities</h5>
@@ -297,8 +305,8 @@ const AddPost: React.FC = () => {
                                                     <div className="d-flex">
                                                         <Image src={urban} alt='Urban communities'/>
                                                         <div>
-                                                            <p>UrbanCommunity</p>
-                                                            <p>325 Members</p>
+                                                            <p className='ps-2'>UrbanCommunity</p>
+                                                            <p className='ps-2'>325 Members</p>
                                                         </div>
                                                     </div>
                                                 <div>
@@ -306,8 +314,8 @@ const AddPost: React.FC = () => {
                                                     <div className="d-flex">
                                                         <Image src={wild} alt='Wild Ones'/>
                                                         <div>
-                                                            <p>Wild Ones</p>
-                                                            <p>2.4k Members</p>
+                                                            <p className='ps-2'>Wild Ones</p>
+                                                            <p className='ps-2'>2.4k Members</p>
                                                         </div>
                                                     </div>
                                                 <div>
@@ -315,8 +323,8 @@ const AddPost: React.FC = () => {
                                                     <div className="d-flex">
                                                         <Image src={home} alt='Home Protectors'/>
                                                         <div>
-                                                            <p>Home Protectors</p>
-                                                            <p>375 Members</p>
+                                                            <p className='ps-2'>Home Protectors</p>
+                                                            <p className='ps-2'>375 Members</p>
                                                         </div>
                                                     </div>
                                                 <div>
@@ -333,4 +341,4 @@ const AddPost: React.FC = () => {
     )
 
 }
-export default AddPost;
+export default Dashboard;

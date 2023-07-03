@@ -2,21 +2,15 @@
         height: 100vh;
     }
     .row{
-        /* width: 100%; */
         height: 100vh;
-        padding: 0 0 5rem 5rem;
         display: flex;
-        // justify-content: center !important;
-        // align-items: center !important;
+        align-items: center;
+        justify-content: center;
     }
     .form{
         padding: 1rem 8rem 0 5rem;
-        position: relative;
-        top: 10%;
-        // justify-content: center;
-        // align-items: center;
+        align-content: center;
         & .logo{
-            // margin-top: 2rem;
             text-align: center;
         }
         & .password{
@@ -41,6 +35,7 @@
 
         & .txt {
             color: #7E848E;
+
         }
         
         & .signup{
@@ -48,8 +43,12 @@
             border-radius: 8px;
             text-align: center;
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: large;
             margin-top: 1rem;
+            color: #eee;
+            border: 0;
+            width: 100%;
+            padding: 1rem;
         }
 
         & .login{
@@ -61,10 +60,11 @@
             }
         }
         & .image{
-            // transform: translate(20rem, -33px);
             position: relative;
             top: -2rem;
-            left: 80%;
+            left: 85%;
+            width: 1.5rem;
+            height: 1.5rem;
         }
     }
     
@@ -87,7 +87,6 @@
             display: none;
         }
         .form{
-            position: relative;
-            top: 50%;
+            padding: 2rem;
         }
     }
