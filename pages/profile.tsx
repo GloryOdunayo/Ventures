@@ -27,21 +27,23 @@ import team from '../public/images/dashboard/team.png';
 import company from '../public/images/dashboard/company.png';
 import company2 from '../public/images/dashboard/company2.png'
 
-let token: any;
+// let token: any;
 let email:any;
 if (typeof window !== "undefined") {
-    token = localStorage.getItem("token");
+    // token = localStorage.getItem("token");
     email = localStorage.getItem('email');
 }
 
 const Profile: React.FC = () => {
-    const [user, setUser] = React.useState<any>('')
+    const [user, setUser] = React.useState<any>('');
     React.useEffect(() => {
-        axios.post("https://venturesnation.onrender.com/user/dashboard", {email})
+        axios.get(`https://api.venturenation.co/api/v1/users/${email}`)
         .then((response: AxiosResponse) => {
-            setUser(response.data.result);
+            setUser(response.data.data);
         })
     }, []);
+    console.log(user);
+    
     
     return (
         <>
@@ -61,7 +63,8 @@ const Profile: React.FC = () => {
                                 <div className="p-2">
                                     <div className={styles.section__info__profile}>
                                         <div className=''>
-                                            <Image src={profile} alt='Profile Image' className={styles.section__info__profile__image} />
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img src={user.avatar} alt="Profile Image" className={styles.section__info__profile__image}/>
                                         </div>
                                     </div>
                                 </div> 
@@ -73,17 +76,17 @@ const Profile: React.FC = () => {
                                 </div>
                                 <div className="px-4 pt-4">
                                     <br />
-                                    <h5 className="">{user.fullname}</h5>
+                                    <h5 className="">{user.name}</h5>
                                     <p className="">{user.email}</p>
                                     {user.bio && <p className="">{user.bio}</p>}
                                     <div className="d-flex">
                                         <div className="d-flex me-4">
                                             <Image src={location} alt="location icon" className='mt-2' />
-                                            {user.location ? <p className='pt-1'>{user.location}</p> : <p className='pt-1'>Lagos, Nigeria</p>}
+                                            {user.nationality ? <p className='pt-1'>{user.nationality}</p> : <p className='pt-1'>Lagos, Nigeria</p>}
                                         </div>
                                         <div className="d-flex me-4">
                                             <Image src={date} alt="date icon" className='mt-2' />
-                                            {user.date ? <p className='pt-1'>{user.date}</p> : <p className='pt-1'>March 12, 1995</p>}
+                                            {user.date ? <p className='pt-1'>{user.dob}</p> : <p className='pt-1'>March 12, 1995</p>}
                                         </div>
                                         <div className="d-flex">
                                             <Image src={gender} alt="gender icon" className='mt-2' />
@@ -164,7 +167,7 @@ const Profile: React.FC = () => {
                                         <div className="p-2 px-4">
                                             <Image src={phone} alt='phone icon'/> <span className='text-dark'>Phone</span>
                                             <div className="d-flex justify-content-between">
-                                                <p className='ps-2'> {user.phoneNumber ? user.phoneNumber : '(+234) 809 000 0000'} </p>
+                                                <p className='ps-2'> {user.phone ? user.phone : '(+234) 809 000 0000'} </p>
                                             </div>
                                         </div>
                                         <div className="p-2 px-4">
@@ -176,7 +179,7 @@ const Profile: React.FC = () => {
                                         <div className="p-2 px-4 mb-3">
                                             <Image src={mail} alt='phone icon'/> <span className='text-dark'>Email address</span>
                                             <div className="d-flex justify-content-between">
-                                                <p> {user.email ? user.email : 'boomboom@gmail.com'} </p>
+                                                <p> {user.email} </p>
                                             </div>
                                         </div>
                                     </div>

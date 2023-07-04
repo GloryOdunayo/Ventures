@@ -31,18 +31,6 @@ if (typeof window !== "undefined") {
 }
 
 const Dashboard: React.FC = () => {
-
-    React.useEffect(() => {
-        axios.get("https://venturesnation.onrender.com/user/dashboard",{
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        })
-        .then((response: AxiosResponse) => {
-            localStorage.setItem('email', response.data.email);
-        })
-    }, []);
-    
     return (
         <>
             <Head>

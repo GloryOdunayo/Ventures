@@ -124,7 +124,7 @@ const Signup: React.FC = () => {
         e.preventDefault();
         setIsLoading(true); 
         validationSchema.validate(formValues, { abortEarly: false }).then(() => {
-            axios.post("http://127.0.0.1:8080/api/v1/auth/register", formValues).then((response: AxiosResponse) => {
+            axios.post("https://api.venturenation.co/api/v1/auth/register", formValues).then((response: AxiosResponse) => {
                 console.log(response.data);
                 setFormValues({
                     fullname: '',

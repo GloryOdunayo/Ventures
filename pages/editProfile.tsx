@@ -1,36 +1,58 @@
 import * as React from 'react'
 import Head from "next/head";
 import Image from 'next/image'
-import styles from '../styles/Signup.module.scss';
 import { useState } from "react";
-import logo from '../public/images/landingPage/nav-logo.png';
-import images from '../public/images/landingPage/1.png'
-import Link from 'next/link';
 import axios, { AxiosResponse } from 'axios';
 import eye from '../public/images/landingPage/Icon.png';
 import * as yup from 'yup';
 import { useRouter } from 'next/router';
+import Nav from '../components/Nav';
+import SideNav from '../components/SideNav';
+import styles from '../styles/Profile.module.scss';
+import profile from '../public/images/dashboard/frame.png';
+import Profile from '../components/Profile';
+
 
 interface FormValues {
-    email: string;
+    fullname: string;
+    dob: string;
     password: string;
+    bio: string;
+    website: string;
+    phone_no: string;
+    nationality: string;
 }
 const validationSchema = yup.object().shape({
     email: yup.string().email('Invalid email address').required('Email is required'),
-    password: yup.string().min(8, 'Password must be at least 6 characters').required('Password is required').matches(
-        /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9])(?=.*[a-z]).*$/,
-        'Password must include capital letter, special character, and number'
-    ),
 });
+
+let email:any;
+if (typeof window !== "undefined") {
+    email = localStorage.getItem('email');
+}
 
 const EditProfile: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<any>([]);
     const router = useRouter();
+    const [user, setUser] = React.useState<any>('');
 
+    React.useEffect(() => {
+        axios.get(`https://api.venturenation.co/api/v1/users/${email}`)
+        .then((response: AxiosResponse) => {
+            setUser(response.data.data);
+        })
+    }, []);
+    console.log(user);
+    
     const [formValues, setFormValues] = useState<FormValues>({
-        email: '',
+        fullname: '',
+        dob: '',
         password: '',
+        bio: '',
+        website: '',
+        phone_no: '',
+        nationality: '',
     });
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,11 +67,16 @@ const EditProfile: React.FC = () => {
         e.preventDefault();
         setIsLoading(true); 
         validationSchema.validate(formValues, { abortEarly: false }).then(() => {
-            axios.post("https://venturesnation.onrender.com/user/signin", formValues).then((response: AxiosResponse) => {
+            axios.patch("https://venturesnation.onrender.com/user/signin", formValues).then((response: AxiosResponse) => {
                 console.log(response.data);
                 setFormValues({
-                    email: '',
+                    fullname: '',
+                    dob: '',
                     password: '',
+                    bio: '',
+                    website: '',
+                    phone_no:'',
+                    nationality: '',
                 });
                 setErrors(response.data.message);
                 localStorage.setItem('token', response.data.myToken);
@@ -85,31 +112,74 @@ const EditProfile: React.FC = () => {
                 crossOrigin="anonymous"
                 ></link>
             </Head>
-            <div className={styles.wrapper}>
+            <Nav />
+            <SideNav/>
+            <div className={styles.section}>
                 <div className="container-fluid">
-                    <div className="row">
-                        <div className="container col-md-6">
-                            <div className=''>
+                    <div className="">
+                        <div className="row justify-content-between">
+                            <div className='col-5'>
+                                <Profile/>
+                            </div>
+                            <div className="col-7 shadow p-5">
+                                <div className="shadow-sm">
+                                    <h3>General</h3>
+                                    <p className=''>Personalize and keep your profile up-to-date.</p>
+                                </div>
                                 <div className=''>
-                                    <h1></h1>
-                                    <p className={styles.txt}>Kindly input your details to access your account.</p>
+                                    <Image src={profile} alt='Profile Image' className={styles.section__info__profile__image} />
+                                </div>
+                                <div className="">
+                                    <form onSubmit={handleSubmit}>
+                                        <div className="form-group">
+                                            <label className="form-label" htmlFor="fullname">Full name</label>
+                                            <input type="text" className="form-control" name="fullname" id="fullname" placeholder="Full name" value={formValues.fullname} onChange={handleInputChange} />
+                                        </div>
+                                        <div className="row justify-content-center">
+                                            <div className="form-group col-6">
+                                                <label className="form-label" htmlFor="phone_no">Phone Number</label>
+                                                <input type="text" className="form-control" name="phone_no" id="phone_no" placeholder="+234 908 745 3451" value={formValues.phone_no} onChange={handleInputChange} />
+                                            </div>
+                                            <div className="form-group col-6">
+                                                <label htmlFor="nationality" className="form-label">Nationality</label>
+                                                <input type="text" className="form-control" name="nationality" id="nationality" placeholder="Nigerian" value={formValues.nationality} onChange={handleInputChange} />
+                                            </div>
+                                        </div>
+                                        <div className="row justify-content-center">
+                                            <div className="form-group col-6">
+                                                <label className="form-label" htmlFor="gender">Gender</label>
+                                                {/* <input type="text" className="form-control" name="gender" id="gender" placeholder="Male" value={formValues.email} onChange={handleInputChange} /> */}
+                                                <select name="gender" id="gender" className='form-select'>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                    <option value="others">Others</option>
+                                                </select>
+                                            </div>
+                                            <div className="form-group col-6">
+                                                <label htmlFor="dob" className="form-label">Date of Birth</label>
+                                                <input type="date" className="form-control" name="dob" id="dob" value={formValues.dob} onChange={handleInputChange} />
+                                            </div>
+                                        </div>
+                                        {/* <div className="form-group">
+                                            <label className="form-label" htmlFor="website">Personal Website</label>
+                                            <input type="url" className="form-control" name="website" id="website" placeholder="Enter your email address" value={formValues.website} onChange={handleInputChange} />
+                                        </div> */}
+                                        <div className="form-group">
+                                            <label className="form-label" htmlFor="website">Personal Website</label>
+                                            {/* <textarea name="website" id="website" cols={100} rows={10} className='form-control' onChange={handleInputChange}></textarea> */}
+                                            <input type="url" className="form-control" name="website" id="website" placeholder="https://" value={formValues.website} onChange={handleInputChange} />
+                                        </div>
+                                        <div className="form-group">
+                                            <label className="form-label" htmlFor="bio">Bio (Brief description about your Profile)</label>
+                                            {/* <textarea name="website" id="website" cols={100} rows={10} className='form-control' onChange={handleInputChange}></textarea> */}
+                                            <input type="text" className="form-control" name="bio" id="bio" placeholder="Passionate Entrepreneur with a drive to innovate and disrupt industries" value={formValues.bio} onChange={handleInputChange} />
+                                        </div>
+                                        <div>
+                                            <button type="submit" className={styles.signup} disabled={isLoading} >{isLoading ? "Updating..." : "Update"}</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                                <form onSubmit={handleSubmit}>
-                                    {errors && <p>{errors}</p>}
-                                    <div className="form-group">
-                                        <label className="form-label" htmlFor="email">Email</label>
-                                        <input type="email" className="form-control" name="email" id="email" placeholder="Enter your email address" value={formValues.email} onChange={handleInputChange} />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="password" className="form-label">Password</label>
-                                        <input type="password" className="form-control" name="password" id="password" placeholder="&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;" value={formValues.password} onChange={handleInputChange} />
-                                        <Image src={eye} alt="" className={styles.image} />
-                                    </div>
-                                    <div className={styles.signup}>
-                                        <button type="submit" className="btn border-0 text-white" disabled={isLoading} >{isLoading ? "Updating..." : "Update"}</button>
-                                    </div>
-                                </form>
                         </div>
                     </div>
                 </div>

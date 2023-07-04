@@ -51,14 +51,15 @@ const Signin: React.FC = () => {
         e.preventDefault();
         setIsLoading(true); 
         validationSchema.validate(formValues, { abortEarly: false }).then(() => {
-            axios.post("https://venturesnation.onrender.com/user/signin", formValues).then((response: AxiosResponse) => {
+            axios.post("https://api.venturenation.co/api/v1/auth/login", formValues).then((response: AxiosResponse) => {
                 console.log(response.data);
                 setFormValues({
                     email: '',
                     password: '',
                 });
                 setErrors(response.data.message);
-                localStorage.setItem('token', response.data.myToken);
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('email', response.data.data.user.email);
                 router.push('/dashboard')
             })
             .catch((error) => {

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import logo from '../public/images/landingPage/nav-logo.png';
 import React from "react";
 import axios, { AxiosResponse } from "axios";
-import profile from '../public/images/landingPage/logo.png';
+// import profile from '../public/images/landingPage/logo.png';
 import styles from '../styles/Dashboard.module.scss';
 
 let email:any;
@@ -13,11 +13,11 @@ if (typeof window !== "undefined") {
 const Nav: React.FC = () => {
     const [data, setData] = React.useState<any>([]);
     React.useEffect(() => {
-        axios.post("http://localhost:5000/user/dashboard", {email})
+        axios.get(`https://api.venturenation.co/api/v1/users/${email}`)
         .then((response: AxiosResponse) => {
-            setData(response.data.result);
+            console.log(response.data.data.name);
+            setData(response.data.data);
         })
-        
     },[]);
     console.log(data);
     const logout = () => {
@@ -70,7 +70,8 @@ const Nav: React.FC = () => {
                             </li>
                             <li className="nav-item dropdown pt-1">
                                 <a className="nav-link dropdown-toggle fw-bold border-left-1" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <Image src={profile} alt="Profile Image" width={35} height={35} className="border rounded-circle border-danger me-2"/>{data.fullname}
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={data.avatar} alt="Profile Image" width={40} height={40} className="border rounded-circle me-2"/>{data.name}
                                 </a>
                                 <ul className="dropdown-menu border-0 shadow">
                                     <li><Link className="dropdown-item" href="/profile">Profile</Link></li>
