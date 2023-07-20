@@ -1,39 +1,15 @@
-.sidebar{
-    position: fixed;
-	width: 180px;
-    padding-top: 3rem;
-	height: 100%;
-	background: white;
-    & ul {
-        height: 100%;
-        width: 100%;
-        line-height: 50px;
-        font-size: 16px;
-        color: #fff !important;
-        border-bottom: 1px solid #222;
-    }
-    & ul li {
-        list-style: none;
-    }
-    
-}
-
-.sidebars{
-    display: none;
-}
-
 .section{
     margin-top: 2rem;
-    padding-left: 12rem;
-    padding-top: 3rem;
+    padding-left: 12.8rem;
+    padding-top: 1rem;
     background: #FBFAFF;
 
     & .section__info{
         margin-bottom: 10px;
+        background-color: #fff;
         & .section__info__title{
-            // box-shadow: 0px 0px 50px -5px rgba(0, 0, 0, 0.06);
             margin-bottom: 3rem;
-            margin-left: 1rem;
+            // margin-left: 1rem;
         }
         & .section__info__profile{
             padding: 1rem 0.5rem 2rem 1rem;
@@ -63,39 +39,50 @@
 
         & .section__info__text{
             border: 1px solid #5F27D3;
-            padding: 0.5rem;
-            border-radius: 5px;
+            // padding: 0.5rem;
+            border-radius: 7px;
             margin-right: 10px;
             color: #5F27D3;
+            :hover{
+                background-color: #5F27D3;
+                color: white;
+                // padding: 0.5rem;
+            }
         }
-        & .skills{
-            // border: 1px solid #5F27D3;
-            padding: 5px;
-            border-radius: 20px;
-            margin-right: 10px;
-            background-color: #F8F5FF;
+        & .skill{
+            display: flex;
+            flex-wrap: wrap;
+            & .skills{
+                // border: 1px solid #5F27D3;
+                padding: 10px 15px;
+                border-radius: 20px;
+                margin-right: 10px;
+                background-color: #F8F5FF;
+                text-align: center;
+            }
         }
         & .section__info__body{
             padding: 0rem 0 2rem 0;
             // box-shadow: 0px 0px 50px -5px rgba(0, 0, 0, 0.06);
             & .section__info__body__header{
-                padding: 1rem 1.5rem ;
+                padding: 1rem 0.5rem 1rem 1rem;
             }
             & .per{
                 margin-top: -10px;
             }
         }
         & .section__info__end{
-            padding: 0.5rem 0 2rem 0;
+            // padding: 0.5rem 0 2rem 0;
             // box-shadow: 0px 0px 50px -5px rgba(0, 0, 0, 0.06);
-            margin-bottom: 2rem;
+            // margin-bottom: 2rem;
             margin-left: 1rem;
             & .section__info__end__header{
-                padding: 1rem 1rem 2rem 1rem;
+                padding: 1rem 0.5rem 2rem 1rem;
             }
             & .section__info__end__venture{
                 height: 150px;
                 width: 100%;
+                border-radius: 1rem;
             }
             & .section__info__end__venture__logo{
                 position: relative;
@@ -107,22 +94,26 @@
             }
             & .venture__text{
                 position: relative;
-                top: -10%;
+                top: -6%;
                 text-align: center;
             }
             & .venture__text__p{
                 position: relative;
-                top: -10%;
+                top: -3%;
                 text-align: center;
                 padding: 0 1rem 0 1rem;
             }
             & .icons{
                 position: relative;
-                top: -8%;
+                top: -3%;
                 display: flex;
-                padding-left: 1rem;
+                justify-content: space-between;
+                padding: 0 1rem 0 1rem;
             }
         }
+    }
+    .clr{
+        color: #5F27D3;
     }
     & .section__session{
         padding-bottom: 6rem;
@@ -135,17 +126,6 @@
             padding: 1rem;
             & span {
                 color: #5A27D5;
-            }
-
-            & .btn {
-                background: linear-gradient(90.73deg, #5A27D5 0%, #5F27D3 32.36%, #AE2EC4 100%);
-                border-radius: 3px;
-                width: 240px;
-                margin-top: 2rem;
-                float: right;
-                & button {
-                    color: white;
-                }
             }
         }
     }

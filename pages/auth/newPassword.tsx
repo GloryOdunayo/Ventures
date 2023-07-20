@@ -1,14 +1,14 @@
 import * as React from 'react'
 import Head from "next/head";
 import Image from 'next/image'
-import styles from '../styles/Signup.module.scss';
+import styles from '../../styles/Signup.module.scss';
 import { useState } from "react";
-import logo from '../public/images/landingPage/nav-logo.png';
-import images from '../public/images/landingPage/1.png'
+import logo from '../../public/images/landingPage/nav-logo.png';
+import images from '../../public/images/landingPage/1.png'
 import Link from 'next/link';
 import axios, { AxiosResponse } from 'axios';
-import eye from '../public/images/dashboard/eye.png';
-import eyeslash from '../public/images/dashboard/eyeslash.png';
+import eye from '../../public/images/dashboard/eye.png';
+import eyeslash from '../../public/images/dashboard/eyeslash.png';
 import * as yup from 'yup';
 import { useRouter } from 'next/router';
 
@@ -24,7 +24,7 @@ const validationSchema = yup.object().shape({
     ),
 });
 
-const Signin: React.FC = () => {
+const NewPassword: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [show, setShow] = useState(false);
     const [errors, setErrors] = useState<any>([]);
@@ -99,14 +99,22 @@ const Signin: React.FC = () => {
                             <div className={styles.form}>
                                 <div className={styles.logo}>
                                     <Link href="/"><Image src={logo} alt="Logo" /></Link>
-                                    <h1>Welcome Back!</h1>
-                                    <p className={styles.txt}>Kindly input your details to access your account.</p>
+                                    <h1>Set New Password</h1>
+                                    <p className={styles.txt}>Your new password must be different from the previously used passwords.</p>
                                 </div>
                                 <form onSubmit={handleSubmit}>
                                     {errors && <p>{errors}</p>}
                                     <div className="form-group">
-                                        <label className="form-label" htmlFor="email">Email</label>
-                                        <input type="email" className="form-control" name="email" id="email" placeholder="Enter your email address" value={formValues.email} onChange={handleInputChange} />
+                                        <label htmlFor="password" className="form-label">Password</label>
+                                        {show?
+                                            <input type="text" className="form-control" name="password" id="password" placeholder="&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;" value={formValues.password} onChange={handleInputChange} /> 
+                                            :
+                                            <input type="password" className="form-control" name="password" id="password" placeholder="&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;" value={formValues.password} onChange={handleInputChange} />
+                                        }
+                                        {show?
+                                            <Image src={eyeslash} alt="" className={styles.image} onClick={display}/>:
+                                            <Image src={eye} alt="" className={styles.image} onClick={display}/>
+                                        }
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="password" className="form-label">Password</label>
@@ -124,9 +132,9 @@ const Signin: React.FC = () => {
                                         <a href="">Forgot Password?</a>
                                     </div>
                                     <div>
-                                        <button type="submit" className={styles.signup} disabled={isLoading} >{isLoading ? "Signing in..." : "Sign in"}</button>
+                                        <button type="submit" className={styles.signup} disabled={isLoading} >{isLoading ? "Resetting Password" : "Reset Password"}</button>
                                     </div>
-                                    <p className="text-center pt-2">Don&apos;t have an account? <Link href="/signin" className={styles.login}>Log in</Link></p>
+                                    <p className="text-center pt-2">Don&apos;t have an account? <Link href="/NewPassword" className={styles.login}>Log in</Link></p>
                                 </form>
                             </div>
                         </div>
@@ -139,4 +147,4 @@ const Signin: React.FC = () => {
         </>
     )
 }
-export default Signin;
+export default NewPassword;

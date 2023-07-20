@@ -1,35 +1,78 @@
 .section{
     background-color: white;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     padding-left: 12rem;
-    padding-top: 4rem;
+    padding-top: 3rem;
 
     & .sidebar{
         height: 18rem;
         margin: 2rem;
         margin-top: 0rem;
-        padding: 2rem;
         box-shadow: 0px 0px 50px -5px rgba(0, 0, 0, 0.06);
+        & .pad{
+            padding: 1rem 2rem;
+        }
     }
     & .section__info__profile__image{
-        width: 80px;
-        height: 80px;
+        width: 130px;
+        height: 130px;
         border-radius: 50%;
         border: 2px solid white;
         margin-right: 1rem;
         background-size: contain;
-        margin-top: 2rem;
         background-color: white;
+    }
+    & .change{
+        position: relative;
+        left: -6.5rem;
+        bottom: -0.5rem;
     }
 
     & .signup{
         background: linear-gradient(90.73deg, #5A27D5 0%, #5F27D3 32.36%, #AE2EC4 100%);
         border-radius: 8px;
         margin-top: 1rem;
+        margin-right: 2rem !important;
+        margin-bottom: 3rem;
         float: right;
         color: #eee;
         border: 0;
         width: 6rem;
         padding: .5rem;
+    }
+    & .save{
+        background: linear-gradient(90.73deg, #5A27D5 0%, #5F27D3 32.36%, #AE2EC4 100%);
+        border-radius: 8px;
+        margin-top: 1rem;
+        margin-right: 2rem !important;
+        margin-bottom: 3rem;
+        float: right;
+        color: #eee;
+        border: 0;
+        width: 8rem;
+        padding: .5rem;
+    }
+
+    & .image{
+        position: relative;
+        top: -2rem;
+        left: 85%;
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    & .icons{
+        position: relative;
+        top: -2rem;
+        left: .5rem;
+    }
+}
+
+@media (max-width :800px){
+    .section{
+        padding-left: .1rem;
+        padding-top: .1rem;
+        & .sidebar{
+            margin: 0;
+        }
     }
 }

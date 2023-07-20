@@ -1,0 +1,36 @@
+.section{
+    background-color: white;
+    margin-top: 3rem;
+    padding-left: 2rem;
+    padding-top: 3rem;
+    & label {
+        font-weight: bold;
+    }
+    & .icons{
+        position: relative;
+        top: -2rem;
+        left: .5rem;
+    }
+    & .signup{
+        background: linear-gradient(90.73deg, #5A27D5 0%, #5F27D3 32.36%, #AE2EC4 100%);
+        border-radius: 8px;
+        margin-top: 1rem;
+        margin-right: 2rem !important;
+        margin-bottom: 3rem;
+        float: right;
+        color: #eee;
+        border: 0;
+        width: 6rem;
+        padding: .5rem;
+    }
+}
+
+@media (max-width :800px){
+    .section{
+        padding-left: .1rem;
+        padding-top: .1rem;
+        & .sidebar{
+            margin: 0;
+        }
+    }
+}

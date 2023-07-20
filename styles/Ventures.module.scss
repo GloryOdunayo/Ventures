@@ -1,0 +1,31 @@
+.section{
+    background-color: white;
+    margin-top: 2rem;
+    padding-left: 12rem;
+    padding-top: 3rem;
+    & .section__info__text{
+        border: 1px solid #5F27D3;
+        // padding: 0.5rem;
+        border-radius: 7px;
+        margin-right: 10px;
+        color: #5F27D3;
+        // text-decoration: none !important;
+        :hover{
+            background-color: #5F27D3 !important;
+            color: white;
+        }
+    }
+    .clr{
+        color: #5F27D3;
+    }
+}
+
+@media (max-width :800px){
+    .section{
+        padding-left: .1rem;
+        padding-top: .1rem;
+        & .sidebar{
+            margin: 0;
+        }
+    }
+}

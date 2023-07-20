@@ -2,6 +2,8 @@ import Script from 'next/script'
 import '../styles/globals.scss'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import store from './store'
+import { Provider } from 'react-redux'
 
 export default function App({ Component, pageProps }: AppProps) {
   return(
@@ -12,7 +14,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossOrigin="anonymous" ></link>
       </Head>
-      <Component {...pageProps} />
+        <Provider store = {store}>
+          <Component {...pageProps} />
+        </Provider>
       <Script
       id="bootstrap-cdn"
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" />
