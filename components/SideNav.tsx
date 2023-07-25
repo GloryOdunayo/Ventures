@@ -87,9 +87,9 @@ const SideNav: React.FC = () => {
                                 </Link>
                             </li>
                             <li className='d-flex'>
-                                {router.pathname === '/venture' && 'active' ? <div className='activeSide'></div> : <div className='activeNots'></div>}
-                                <Link href="/venture" className={`text-decoration-none ${
-                                    router.pathname === '/venture' && 'active' ? 'activeNav' : 'activeNot'
+                                {router.pathname === '/ventures' && 'active' ? <div className='activeSide'></div> : <div className='activeNots'></div>}
+                                <Link href="/ventures" className={`text-decoration-none ${
+                                    router.pathname === '/ventures' && 'active' ? 'activeNav' : 'activeNot'
                                 }`}>
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         {

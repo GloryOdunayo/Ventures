@@ -18,6 +18,35 @@
     .clr{
         color: #5F27D3;
     }
+    & .venture__banner{
+        width: 100%;
+        height: 10rem;
+    }
+
+    & .venture__logo{
+        width: 5rem;
+        height: 5rem;
+        border-radius:10%;
+        border: 5px solid white;
+        // margin-left: 5rem;
+        // margin-top: -1rem;
+        position: relative;
+        top: -3rem;
+        left: 4rem;
+    }
+    & .venture__btn{
+        border: 1px solid #5F27D3;
+        // padding: 0.5rem;
+        margin-top: .3rem;
+        border-radius: 7px;
+        margin-right: 10px;
+        color: #5F27D3;
+        :hover{
+            background-color: #5F27D3;
+            color: white;
+            // padding: 0.5rem;
+        }
+    }
 }
 
 @media (max-width :800px){

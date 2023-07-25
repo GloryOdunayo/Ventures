@@ -1,0 +1,30 @@
+.section{
+    margin-top: 2rem;
+    padding-left: 12rem;
+    padding-top: 3rem;
+    background: #FBFAFF;
+    & .session{
+        background-color: white;
+        padding: 2rem;
+        & .session__header{
+            border-bottom: 1px solid #FBFAFF;
+            display: flex;
+        }
+        & .section__info__text{
+            border: 1px solid #5F27D3;
+            padding: 0rem;
+            border-radius: 7px;
+            color: #5F27D3;
+            :hover{
+                background-color: #5F27D3;
+                color: white;
+            }
+        }
+        & .session__btn{
+            background: linear-gradient(90.73deg, #5A27D5 0%, #5F27D3 32.36%, #AE2EC4 100%) !important;
+            border-radius: 7px;
+            border: 0;
+            color: white !important;
+        }
+    }
+}

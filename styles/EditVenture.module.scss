@@ -10,6 +10,8 @@
         position: relative;
         top: -2rem;
         left: .5rem;
+        width: 2em;
+        padding-left: 0.6rem;
     }
     & .signup{
         background: linear-gradient(90.73deg, #5A27D5 0%, #5F27D3 32.36%, #AE2EC4 100%);
@@ -20,8 +22,12 @@
         float: right;
         color: #eee;
         border: 0;
-        width: 6rem;
+        width: 10rem;
         padding: .5rem;
+    }
+
+    & .service{
+        background: url();
     }
 }
 

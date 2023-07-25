@@ -3,8 +3,7 @@ import Head from "next/head";
 import Image from 'next/image'
 import { useState } from "react";
 import Nav from '../components/Nav';
-import SideNav from '../components/SideNav';
-import styles from '../styles/Profile.module.scss';
+import styles from '../styles/EditVenture.module.scss';
 import { fetchUser } from './features/users/userSlice';
 import { useAppDispatch, useAppSelector } from './hooks';
 
@@ -15,7 +14,7 @@ if (typeof window !== "undefined") {
     token = localStorage.getItem('token');
 }
 
-const UpcomingSessions: React.FC = () => {
+const Services: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<any>([]);
     const dispatch = useAppDispatch();
@@ -35,12 +34,16 @@ const UpcomingSessions: React.FC = () => {
                 <title>Upcoming Sessions</title>
             </Head>
             <Nav />
-            <SideNav/>
             <div className={styles.section}>
                 <div className="container-fluid">
-                    <div className="">
-                        <div className="row justify-content-center">
-                            <h3>Upcoming Sessions</h3>
+                    <div className="row justify-content-center">
+                        <div className="col-10">
+                            <div className={styles.service}>
+                                <div className="col-6">
+                                    <h3>Connect to Expert Support for your Business Needs.</h3>
+                                    <p>Find coaches, life-long mentorship, or expert services on a contract basis to meet any of your business needs</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -48,4 +51,4 @@ const UpcomingSessions: React.FC = () => {
         </>
     )
 }
-export default UpcomingSessions;
+export default Services;

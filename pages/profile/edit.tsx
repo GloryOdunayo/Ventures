@@ -68,13 +68,6 @@ const EditProfile: React.FC = () => {
             ...prevValues,
             bio: bio,
         }));
-        if(tags){
-            setFormValues((prevValues) => ({
-                ...prevValues,
-                skills: tags,
-            }));
-            console.log(formValues);
-        }
     };
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {     
         const { name, value } = event.target;
@@ -82,13 +75,11 @@ const EditProfile: React.FC = () => {
             ...prevValues,
             [name]: value,
         }));
-        if(tags){
-            setFormValues((prevValues) => ({
-                ...prevValues,
-                skills: tags,
-            }));
-        }
     };
+    setFormValues((prevValues) => ({
+        ...prevValues,
+        skills: tags,
+    }));
 
 
     const handleSubmit = (e: React.FormEvent) => {

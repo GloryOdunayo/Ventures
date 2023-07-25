@@ -8,23 +8,14 @@ import image2 from '../public/images/dashboard/image 2.png';
 import styles from '../styles/User.module.scss'
 import Link from 'next/link';
 import SideNav from '../components/SideNav';
-import linkedIn from '../public/images/dashboard/linkedln.png';
-import facebook from '../public/images/dashboard/facebook.png';
-import twitter from '../public/images/dashboard/twitter.png';
-import instagram from '../public/images/dashboard/instagram.png';
-import share from '../public/images/dashboard/share.png';
+// import share from '../public/images/dashboard/share.png';
 import phone from '../public/images/dashboard/call.png';
 import website from '../public/images/dashboard/web.png';
 import mail from '../public/images/dashboard/mail.png';
-import edit from '../public/images/dashboard/edit.png';
-import add from '../public/images/dashboard/add.png';
-import location from '../public/images/dashboard/location.png'
-import date from '../public/images/dashboard/date.png';
-import gender from '../public/images/dashboard/gender.png';
-import location2 from '../public/images/dashboard/location2.png'
+import location2 from '../public/images/dashboard/location2.png';
 import team from '../public/images/dashboard/team.png';
 import company from '../public/images/dashboard/company.png';
-import company2 from '../public/images/dashboard/company2.png'
+import company2 from '../public/images/dashboard/company2.png';
 import { fetchUser } from './features/users/userSlice';
 import { useAppDispatch, useAppSelector } from './hooks';
 import { useRouter } from 'next/router';
@@ -183,68 +174,124 @@ const Profile: React.FC = () => {
                             </div>
                         </div>
                         <div className="col-lg-3">
-                            <div className="shadows p-3 mt-3">
-                                <div className=''>
-                                    <div className={styles.section__session__header}>
-                                        <h5>Contact Info</h5>
-                                    </div>
-                                    <div className={styles.section__session__body}>
-                                        <div className="p-2 px-4">
-                                            <Image src={phone} alt='phone icon'/> <span className='text-dark ps-1'>Phone</span>
-                                            <div className="d-flex justify-content-between">
-                                                <p className='ps-4'> {user.phone ? user.phone : '(+234) 809 000 0000'} </p>
-                                            </div>
+                            <div className={styles.profile}>
+                                <div className="shadows p-3 mt-3">
+                                    <div className=''>
+                                        <div className={styles.section__session__header}>
+                                            <h5>Contact Info</h5>
                                         </div>
-                                        <div className="p-2 px-4">
-                                            <Image src={website} alt='phone icon'/> <span className='text-dark ps-1'>Website</span>
-                                            <div className="d-flex justify-content-between">
-                                                <p className='ps-4'> {user.website ? user.website : 'samplewebsite.com'} </p>
-                                            </div>
-                                        </div>
-                                        <div className="p-2 px-4 mb-3">
-                                            <Image src={mail} alt='phone icon'/> <span className='text-dark ps-1'>Email address</span>
-                                            <div className="d-flex justify-content-between">
-                                                <p className='ps-4'> {user.email} </p>
-                                            </div>
+                                        <div className={styles.section__session__body}>
+                                            {
+                                                user.phone?
+                                                <div className="p-2 px-4">
+                                                    <Image src={phone} alt='phone icon'/> <span className='text-dark ps-1'>Phone</span>
+                                                    <div className="d-flex justify-content-between">
+                                                        <p className='ps-4'> {user.phone ? user.phone : '(+234) 809 000 0000'} </p>
+                                                    </div>
+                                                </div>:""
+                                            }
+                                            {
+                                                user.website?
+                                                <div className="p-2 px-4">
+                                                    <Image src={website} alt='phone icon'/> <span className='text-dark ps-1'>Website</span>
+                                                    <div className="d-flex justify-content-between">
+                                                        <p className='ps-4'> {user.website ? user.website : 'samplewebsite.com'} </p>
+                                                    </div>
+                                                </div>:""
+                                            }
+                                            {
+                                                user.email?
+                                                <div className="p-2 px-4 mb-3">
+                                                    {/* <span><i className="fa-regular fa-envelope"></i></span> */}
+                                                    <Image src={mail} alt='phone icon'/> <span className='text-dark ps-1'>Email address</span>
+                                                    <div className="d-flex justify-content-between">
+                                                        <p className='ps-4'> {user.email} </p>
+                                                    </div>
+                                                </div>:""
+                                            }
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="mt-5 shadows">
-                                <div className={styles.section__end}>
-                                    <div className={styles.section__session__header}>
-                                        <h5>Socials</h5>
-                                    </div>
-                                        <div className={styles.section__session__body}>
-                                            <div className="">
-                                                <div className="d-flex pb-4">
-                                                    <Image src={linkedIn} alt='Linkedln icon'/>
-                                                    <div className='ps-2'>
-                                                        <p className='mb-0'>Linkedln</p>
-                                                        <Link href={social.linkedin.includes('https://')? `${social.linkedin}` :`https://${social.linkedin}`} className='text-decoration'>view likened profile</Link> <Image src={share} alt='share icon'/>
-                                                    </div>
-                                                </div>
-                                                <div className="d-flex pb-4">
-                                                    <Image src={twitter} alt='Twitter icon'/>                                               
-                                                    <div className='ps-2'>
-                                                        <p className='mb-0'>Twitter</p>
-                                                        <Link href={social.twitter.includes('https://')? `${social.twitter}` :`https://${social.twitter}`}  className='text-decoration'>view twitter profile</Link> <Image src={share} alt='share icon'/>
-                                                    </div>
-                                                </div>
-                                                <div className="d-flex pb-4">
-                                                    <Image src={instagram} alt='Instagram icon'/>
-                                                    <div className='ps-2'>
-                                                        <p className='mb-0'>Instagram</p>
-                                                        <Link href={social.instagram.includes('https://')? `${social.instagram}` :`https://${social.instagram}`} className='text-decoration'>view instagram profile</Link> <Image src={share} alt='share icon'/>
-                                                    </div>
-                                                </div>
-                                                <div className="d-flex pb-2">
-                                                    <Image src={facebook} alt='Facebook icon'/>
-                                                    <div className='ps-2'>
-                                                        <p className='mb-0'>Facebook</p>
-                                                        <Link href={social.facebook.includes('https://')? `${social.facebook}` :`https://${social.facebook}`} className='text-decoration'>view facebook profile</Link> <Image src={share} alt='share icon'/>
-                                                    </div>
-                                                </div>
+                                <div className="mt-2 shadows">
+                                    <div className={styles.section__end}>
+                                        <div className={styles.section__session__header}>
+                                            <h5>Socials</h5>
+                                        </div>
+                                            <div className={styles.section__session__body}>
+                                                <div className="">
+                                                    {
+                                                        social.linkedin?
+                                                        <div className='pb-4'>
+                                                            <div className="d-flex">
+                                                            {/* <Image src={linkedIn} alt='Linkedln icon'/> */}
+                                                                <div className="text-white px-2 py-1 rounded-1" style={{
+                                                                    backgroundColor: '#3B5998'
+                                                                }}>
+                                                                    <i className="fa fa-linkedin" aria-hidden="true"></i>   
+                                                                </div>
+                                                                <div className='ps-3 pt-1'>
+                                                                    <p className='mb-0'>LinkedIn</p>
+                                                                </div>
+                                                                    
+                                                            </div>
+                                                            <Link href={social.linkedin.includes('https://')? `${social.linkedin}` :`https://${social.linkedin}`} className='text-decoration ps-5'>view likened profile <i className="fa-solid fa-arrow-up-right-from-square"></i></Link>
+                                                        </div>
+                                                        :""
+                                                    }
+                                                    {
+                                                        social.twitter?
+                                                        <div className='pb-4'>
+                                                            <div className="d-flex">
+                                                            {/* <Image src={linkedIn} alt='Linkedln icon'/> */}
+                                                                <div className="text-white px-2 py-1 rounded-1 bg-info">
+                                                                    <i className="fa fa-twitter" aria-hidden="true"></i>   
+                                                                </div>
+                                                                <div className='ps-3 pt-1'>
+                                                                    <p className='mb-0'>Twitter</p>
+                                                                </div>
+                                                                    
+                                                            </div>
+                                                            <Link href={social.twitter.includes('https://')? `${social.twitter}` :`https://${social.twitter}`}  className='text-decoration ps-5'>view twitter profile <i className="fa-solid fa-arrow-up-right-from-square"></i></Link> 
+                                                        </div>
+                                                        :""
+                                                    }
+                                                    {
+                                                        social.instagram?
+                                                        <div className='pb-4'>
+                                                            <div className="d-flex">
+                                                            {/* <Image src={linkedIn} alt='Linkedln icon'/> */}
+                                                                <div className="text-white px-2 py-1 rounded-1" style={{
+                                                                    background: 'radial-gradient(circle at 33% 100%, #fed373 4%, #f15245 30%, #d92e7f 62%, #9b36b7 85%, #515ecf)',
+                                                                }}>
+                                                                    <i className="fa fa-instagram" aria-hidden="true"></i>   
+                                                                </div>
+                                                                <div className='ps-3 pt-1'>
+                                                                    <p className='mb-0'>Instagram</p>
+                                                                </div>
+                                                                    
+                                                            </div>
+                                                            <Link href={social.instagram.includes('https://')? `${social.instagram}` :`https://${social.instagram}`} className='text-decoration ps-5'>view instagram profile <i className="fa-solid fa-arrow-up-right-from-square"></i></Link>
+                                                        </div>: ""
+                                                    }
+                                                    {
+                                                        social.facebook?
+                                                        <div className='pb-4'>
+                                                            <div className="d-flex">
+                                                            {/* <Image src={linkedIn} alt='Linkedln icon'/> */}
+                                                                <div className="text-white px-2 py-1 rounded-1" style={{
+                                                                    backgroundColor: '#3B5998'
+                                                                }}>
+                                                                    <i className="fa fa-linkedin" aria-hidden="true"></i>   
+                                                                </div>
+                                                                <div className='ps-3 pt-1'>
+                                                                    <p className='mb-0'>Facebook</p>
+                                                                </div>
+                                                                    
+                                                            </div>
+                                                            <Link href={social.facebook.includes('https://')? `${social.facebook}` :`https://${social.facebook}`} className='text-decoration ps-5'>view facebook profile <i className="fa-solid fa-arrow-up-right-from-square"></i></Link>
+                                                        </div>:""
+                                                    }
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

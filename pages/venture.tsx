@@ -2,17 +2,21 @@ import * as React from 'react'
 import Head from "next/head";
 import Image from 'next/image'
 import { useState } from "react";
-import linkedIn from '../public/images/dashboard/linkedln.png';
-import facebook from '../public/images/dashboard/facebook.png';
-import twitter from '../public/images/dashboard/twitter.png';
-import instagram from '../public/images/dashboard/instagram.png';
-import share from '../public/images/dashboard/share.png';
 import styles from '../styles/Ventures.module.scss';
+import phone from '../public/images/dashboard/call.png';
+import website from '../public/images/dashboard/web.png';
+import mail from '../public/images/dashboard/mail.png';
 import { fetchUser } from './features/users/userSlice';
+import company2 from '../public/images/dashboard/company2.png';
+import image1 from '../public/images/dashboard/image 1.png';
 import { useAppDispatch, useAppSelector } from './hooks';
 import Nav from '../components/Nav';
 import SideNav from '../components/SideNav';
 import Link from 'next/link';
+import stable from '../public/images/dashboard/stable.png';
+import model from '../public/images/dashboard/customer.png';
+import salary from '../public/images/dashboard/salary.png';
+import founded from '../public/images/dashboard/year founded.png';
 
 let email:any;
 let token:any;
@@ -21,16 +25,17 @@ if (typeof window !== "undefined") {
     token = localStorage.getItem('token');
 }
 
-const Ventures: React.FC = () => {
+const Venture: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<any>([]);
     const dispatch = useAppDispatch();
     const user = useAppSelector(state => state.user.users);
+    const social = useAppSelector(state => state.user.users.socials);
     React.useEffect(() => {
         dispatch(fetchUser())
     }, [])
     if (!user) {
-        return <div>Loading...</div>; // Display loading indicator while fetching user data
+        return <div>Loading...</div>;
     }
     return (
         <>
@@ -50,47 +55,181 @@ const Ventures: React.FC = () => {
                 <SideNav />
                 <div className={styles.section}>
                     <div className="row">
-                        <div className="col-9">
-                            <div className="d-flex justify-content-between px-3">
-                                <h4>My Ventures</h4>
-                                <div className={styles.section__info__text}>
-                                    <Link href='ventures/add' className={`btn text-decoration px-3 py-2 btn-outline-${styles.clr}`}><i className="fa fa-plus" aria-hidden="true"></i> Add venture</Link>
+                        <div className="col-9 shadows">
+                            <div className="mt-3">
+                                <Image src={image1} alt='venture banner' className={styles.venture__banner} />
+                                <Image src={image1} alt='venture logo' className={styles.venture__logo}/>
+                                <div className="d-flex float-end">
+                                    <div className={styles.venture__btn}>
+                                        <Link href='/ventures/edit' className={`btn text-decoration px-3 py-2 btn-outline-${styles.clr}`}><i className="fa fa-edit" aria-hidden="true"></i> Edit Profile</Link>
+                                    </div>
+                                    <div className={styles.venture__btn}>
+                                        <Link href='' className={`btn text-decoration px-3 py-2 btn-outline-${styles.clr}`}><i className="fa-regular fa-share-from-square" aria-hidden="true"></i> Share</Link>
+                                    </div>
+                                </div>
+                                <h4>Venture Name</h4>
+                                <p className='text-muted'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores ex cupiditate deserunt laboriosam.</p>
+                                <div className="">
+                                    <div className="d-flex">
+                                        Sector: <div className="">
+                                            <span className="badge rounded-pill bg-primary">Technology</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-3">
                             <div className={styles.section__session__body}>
-                                <div className="">
-                                    <div className="d-flex pb-4">
-                                        <Image src={linkedIn} alt='Linkedln icon'/>
-                                        <div className='ps-2'>
-                                            <p className='mb-0'>Linkedln</p>
-                                            <Link href='{user.linkedln}' className='text-decoration'>view likened profile</Link> <Image src={share} alt='share icon'/>
+                                <div className="shadows p-3">
+                                    <div className=''>
+                                        <div className={styles.section__session__header}>
+                                            <h5>Contact Info</h5>
                                         </div>
-                                    </div>
-                                    <div className="d-flex pb-4">
-                                        <Image src={twitter} alt='Twitter icon'/>                                               
-                                        <div className='ps-2'>
-                                            <p className='mb-0'>Twitter</p>
-                                            <Link href='{user.twitter}' className='text-decoration'>view twitter profile</Link> <Image src={share} alt='share icon'/>
+                                        <div className={styles.section__session__body}>
+                                            {
+                                                user.phone?
+                                                <div className="p-2 px-4">
+                                                    <Image src={phone} alt='phone icon'/> <span className='text-dark ps-1'>Phone</span>
+                                                    <div className="d-flex justify-content-between">
+                                                        <p className='ps-4'> {user.phone ? user.phone : '(+234) 809 000 0000'} </p>
+                                                    </div>
+                                                </div>:""
+                                            }
+                                            {
+                                                user.website?
+                                                <div className="p-2 px-4">
+                                                    <Image src={website} alt='phone icon'/> <span className='text-dark ps-1'>Website</span>
+                                                    <div className="d-flex justify-content-between">
+                                                        <p className='ps-4'> {user.website ? user.website : 'samplewebsite.com'} </p>
+                                                    </div>
+                                                </div>:""
+                                            }
+                                            {
+                                                user.email?
+                                                <div className="p-2 px-4 mb-3">
+                                                    <Image src={mail} alt='phone icon'/> <span className='text-dark ps-1'>Email address</span>
+                                                    <div className="d-flex justify-content-between">
+                                                        <p className='ps-4'> {user.email} </p>
+                                                    </div>
+                                                </div>:""
+                                            }
                                         </div>
-                                    </div>
-                                    <div className="d-flex pb-4">
-                                        <Image src={instagram} alt='Instagram icon'/>
-                                        <div className='ps-2'>
-                                            <p className='mb-0'>Instagram</p>
-                                            <Link href='{user.instagram}' className='text-decoration'>view instagram profile</Link> <Image src={share} alt='share icon'/>
-                                        </div>
-                                    </div>
-                                    <div className="d-flex pb-2">
-                                        <Image src={facebook} alt='Facebook icon'/>
-                                        <div className='ps-2'>
-                                            <p className='mb-0'>Facebook</p>
-                                            <Link href='{user.facebook}' className='text-decoration'>view facebook profile</Link> <Image src={share} alt='share icon'/>
+                                        <div className="d-flex">
+                                            {
+                                                social.linkedin?
+                                                    <div className='ps-2 pt-1'>
+                                                        <Link href={social.linkedin.includes('https://')? `${social.linkedin}` :`https://${social.linkedin}`} className='text-decoration'><div className="text-white px-2 py-1 rounded-1" style={{
+                                                            backgroundColor: '#3B5998'
+                                                        }}>
+                                                        <i className="fa fa-linkedin" aria-hidden="true"></i>   
+                                                    </div></Link>
+                                                </div>:""
+                                            }
+                                            {
+                                                social.twitter?
+                                                    <div className='ps-2 pt-1'>
+                                                        <Link href={social.twitter.includes('https://')? `${social.twitter}` :`https://${social.twitter}`}  className='text-decoration'><div className="bg-info text-white px-2 py-1 rounded-1" >
+                                                        <i className="fa fa-twitter" aria-hidden="true"></i>                                       
+                                                    </div></Link> 
+                                                </div>:""
+                                            }
+                                            {
+                                                social.instagram?
+                                                    <div className='ps-2 pt-1'>
+                                                        <Link href={social.instagram.includes('https://')? `${social.instagram}` :`https://${social.instagram}`} className='text-decoration'><div className="text-white px-2 py-1 rounded-1" style={{
+                                                            backgroundColor: '#3B5998'
+                                                    }}>
+                                                        <i className="fa fa-instagram" aria-hidden="true"></i>                                       
+                                                    </div></Link>
+                                                </div>: ""
+                                            }
+                                            {
+                                                social.facebook?
+                                                    <div className='ps-2 pt-1'>
+                                                        <Link href={social.facebook.includes('https://')? `${social.facebook}` :`https://${social.facebook}`} className='text-decoration'><div className="text-white px-2 py-1 rounded-1" style={{
+                                                            backgroundColor: '#3B5998'
+                                                    }}>
+                                                        <i className="fa fa-facebook" aria-hidden="true"></i>                                       
+                                                    </div></Link>
+                                                </div>:""
+                                            }
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div className="row my-4 justify-content-around">
+                        <div className="col-2 p-3 shadows d-flex justify-content-between">
+                            <div className="">
+                                <h6>Stable</h6>
+                                <p>Venture Stage</p>
+                            </div>
+                            <Image src={stable} alt='' />
+                        </div>
+                        <div className="col-2 p-3 shadows d-flex justify-content-between">
+                            <div className="">
+                                <h6>B2B, B2B2C</h6>
+                                <p>Customer model</p>
+                            </div>
+                            <Image src={model} alt='' />
+                        </div>
+                        <div className="col-2 p-3 shadows d-flex justify-content-between">
+                            <div className="">
+                                <h6>$ 53, 000</h6>
+                                <p>Average salary</p>
+                            </div>
+                            <Image src={salary} alt='' />
+                        </div>
+                        <div className="col-2 p-3 shadows d-flex justify-content-between">
+                            <div className="">
+                                <h6>2019</h6>
+                                <p>Year founded</p>
+                            </div>
+                            <Image src={founded} alt='' />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <h5>Full description</h5>
+                        <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur libero reiciendis, nisi obcaecati voluptas aliquid quam incidunt velit perferendis eos accusantium similique. Explicabo, est. Eius nisi sed ullam laudantium, sapiente voluptatem architecto eligendi? Dolore, et! Expedita quisquam voluptas fugit nobis odit adipisci quos est laboriosam qui maxime voluptates, mollitia perferendis debitis cupiditate minima fugiat. Voluptas laudantium repudiandae earum ipsam autem quos quod beatae doloribus minus, quia odit consectetur explicabo illo porro sapiente voluptatibus aperiam repellat delectus cupiditate exercitationem obcaecati in minima. Veniam eaque fugit nostrum. Consequuntur sed, cupiditate ducimus dicta minima, officia, neque dolore deleniti culpa facilis nulla impedit? Assumenda, suscipit. Amet, molestiae temporibus. Nesciunt, quos at id error atque, fugit facilis quidem omnis recusandae labore, cum similique voluptatibus saepe hic assumenda tenetur inventore. Praesentium id sunt eveniet asperiores harum neque quas nesciunt debitis. Excepturi labore ullam suscipit ratione illum optio quaerat vero, expedita iure dolorem aliquam, esse earum ducimus dolorum ipsum sint veniam quis. Saepe sapiente voluptate obcaecati asperiores odit, aliquid perferendis consectetur quo corporis et eos rem accusantium expedita laborum quidem atque soluta ex. Nihil dignissimos ratione illum soluta, omnis illo deleniti quae voluptatibus aspernatur nisi itaque quisquam dolor odio sunt laboriosam quia! Distinctio officiis amet tempore quae! </p>
+                    </div>
+                    <div className="row justify-content-around">
+                        <div className="col-6">
+                            <div className="d-flex justify-content-between py-4">
+                                <div className=" col-5 p-3 shadows d-flex justify-content-between">
+                                    <div className="">
+                                        <h6>Stable</h6>
+                                        <p>Venture Stage</p>
+                                    </div>
+                                    <Image src={stable} alt='' />
+                                </div>
+                                <div className=" col-5 p-3 shadows d-flex justify-content-between">
+                                    <div className="">
+                                        <h6>Stable</h6>
+                                        <p>Venture Stage</p>
+                                    </div>
+                                    <Image src={stable} alt='' />
+                                </div>
+                            </div>
+                            <div className="d-flex justify-content-between">
+                                <div className=" col-5 p-3 shadows d-flex justify-content-between">
+                                    <div className="">
+                                        <h6>Stable</h6>
+                                        <p>Venture Stage</p>
+                                    </div>
+                                    <Image src={stable} alt='' />
+                                </div>
+                                <div className=" col-5 p-3 shadows d-flex justify-content-between">
+                                    <div className="">
+                                        <h6>Stable</h6>
+                                        <p>Venture Stage</p>
+                                    </div>
+                                    <Image src={stable} alt='' />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-5 shadows mt-4">
+                            
                         </div>
                     </div>
                 </div>
@@ -98,4 +237,4 @@ const Ventures: React.FC = () => {
         </>
     )
 }
-export default Ventures;
+export default Venture;

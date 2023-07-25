@@ -154,6 +154,10 @@
             }
         }
     }
+
+    & .profile{
+        position: fixed;
+    }
 }
 
 @media (max-width :800px) {
