@@ -91,11 +91,6 @@ const EditVentures: React.FC = () => {
         )
     }, [])
 
-    if(slug) {
-        console.log(slug);
-        
-    }
-
     const [formValues, setFormValues] = useState<FormValues>({
         name: data.name,
         location: data.location,
@@ -290,7 +285,7 @@ const EditVentures: React.FC = () => {
                                                         "B2E",
                                                         "P2P",
                                                         "B2D",
-                                                    ]} />
+                                                    ]} value={tags} />
                                                 </div>
                                             </div>
                                             <div className="form-group col-6">

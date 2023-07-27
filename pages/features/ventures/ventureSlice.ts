@@ -1,34 +1,59 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import Venture from "../../ventures/[venture]";
 
 
 type Venture = {
     name: string,
-    ventureId: string,
-    data: []
+    id: string,
+    owner: string,
+    slug: string,
+    description: string,
+    link: string,
+    stage: string,
+    sector: [],
+    location: string,
+    businessModel: [],
+    dateFounded: string,
+    tagline: string,
+    // data: []
 }
 
 type InitialState = {
     loading: boolean,
-    ventures : Venture[],
+    ventures : Venture,
     error: string
 }
 
 const initialState: InitialState = {
     loading: false,
-    ventures: [],
+    ventures: {
+        name: "",
+        id: "",
+        owner: "",
+        slug: "",
+        description: "",
+        link: "",
+        stage: "",
+        sector: [],
+        location: "",
+        businessModel: [],
+        dateFounded: "",
+        tagline: "",
+        // data: []
+    },
     error: '',
 };
 
-let email:any;
 let token: any;
+let slug:any;
 if (typeof window !== "undefined") {
-    email = localStorage.getItem('email');
     token = localStorage.getItem("token");
+    slug = localStorage.getItem("slug");
 }
 
-export const fetchventure = createAsyncThunk ('users/fetchventure',() => {
-    return axios.get(`https://api.venturenation.co/api/v1/users/${email}/ventures`, {
+export const fetchVenture = createAsyncThunk ('users/fetchVenture',() => {
+    return axios.get(`https://api.venturenation.co/api/v1/ventures/${slug}`, {
         headers: {
             Authorization: `Bearer ${token}`,
         }
@@ -40,15 +65,15 @@ const ventureSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: builder => {
-        builder.addCase(fetchventure.pending, (state) => {
+        builder.addCase(fetchVenture.pending, (state) => {
             state.loading = true;
         })
-        builder.addCase(fetchventure.fulfilled, (state, action: PayloadAction<Venture[]> ) => {
+        builder.addCase(fetchVenture.fulfilled, (state, action: PayloadAction<Venture> ) => {
             state.loading = false;
             state.ventures = action.payload;
             state.error = '';
         })
-        builder.addCase(fetchventure.rejected, (state, action) => {
+        builder.addCase(fetchVenture.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error.message || "Something went wrong";
         })
