@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from './hooks';
 import Nav from '../components/Nav';
 import SideNav from '../components/SideNav';
 import Link from 'next/link';
+import axios from 'axios';
 
 let email:any;
 let token:any;
@@ -23,14 +24,23 @@ const Ventures: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<any>([]);
     const dispatch = useAppDispatch();
+    const [data, setData] = useState<any>([]);
     const user = useAppSelector(state => state.user.users);
-    const social = useAppSelector(state => state.user.users.socials);
     React.useEffect(() => {
-        dispatch(fetchUser())
+        dispatch(fetchUser());
+        axios.get(`https://api.venturenation.co/api/v1/ventures`, {
+        headers: {
+            Authorization:  `Bearer ${token}`
+        }}).then((res) => {
+            // console.log(res.data)
+            setData(res.data.data);
+        }).catch((err) => {
+            console.log(err)
+        })
     }, [])
-    if (!user) {
-        return <div>Loading...</div>;
-    }
+    // if (!user) {
+    //     return <div>Loading...</div>;
+    // }
     return (
         <>
             <Head>
@@ -50,13 +60,51 @@ const Ventures: React.FC = () => {
                 <div className={styles.section}>
                     <div className="row">
                         <div className="col">
-                            <div className="d-flex justify-content-between px-3">
-                                <h4>My Ventures</h4>
+                            <div className="d-flex justify-content-between px-3 ">
+                                <h4 className=''>My Ventures</h4>
                                 <div className={styles.section__info__text}>
                                     <Link href='ventures/add' className={`btn text-decoration px-3 py-2 btn-outline-${styles.clr}`}><i className="fa fa-plus" aria-hidden="true"></i> Add venture</Link>
                                 </div>
-                                
                             </div>
+                            {
+                                data.filter(function (venture:any) {
+                                    return venture && venture.owner === user.id;
+                                }).map((item:any ,i: React.Key | null | undefined| number) => {
+                                    return (
+                                        <div className="row" key={i}>
+                                            <div className="row row-deck">
+                                                <Link href={`/ventures/${item.slug}`} className='text-decoration-none text-dark'>
+                                                <div className="col-md-4">
+                                                    <div className="card d-flex flex-column">
+                                                        <a href="#">
+                                                            <img className="card-img-top" src={item.banner} alt="" />
+                                                        </a>
+                                                        <div className="card-body d-flex flex-column">
+                                                            <h3 className="card-title"><a href="" className='text-decoration-none text-dark'>{item.name}</a></h3>
+                                                            <div className="text-muted">{item.tagline}</div>
+                                                            <div className="d-flex align-items-center pt-4 mt-auto">
+                                                                <span className="avatar"></span>
+                                                                <div className="ms-3">
+                                                                    <p className="text-body">{item.location}</p>
+                                                                </div>
+                                                                {/* <div className="ms-auto">
+                                                                    <a href="#" className="icon d-none d-md-inline-block ms-3 text-muted">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-heart" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                                        <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path>
+                                                                    </svg>
+                                                                    </a>
+                                                                </div> */}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
                 </div>

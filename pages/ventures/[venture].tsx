@@ -2,21 +2,24 @@ import * as React from 'react'
 import Head from "next/head";
 import Image from 'next/image'
 import { useState } from "react";
-import styles from '../styles/Ventures.module.scss';
-import phone from '../public/images/dashboard/call.png';
-import website from '../public/images/dashboard/web.png';
-import mail from '../public/images/dashboard/mail.png';
-import { fetchUser } from './features/users/userSlice';
+import styles from '../../styles/Ventures.module.scss';
+import phone from '../../public/images/dashboard/call.png';
+import website from '../../public/images/dashboard/web.png';
+import mail from '../../public/images/dashboard/mail.png';
+import { fetchUser } from '../features/users/userSlice';
 import company2 from '../public/images/dashboard/company2.png';
-import image1 from '../public/images/dashboard/image 1.png';
-import { useAppDispatch, useAppSelector } from './hooks';
-import Nav from '../components/Nav';
-import SideNav from '../components/SideNav';
+import image1 from '../../public/images/dashboard/image 1.png';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import Nav from '../../components/Nav';
+import SideNav from '../../components/SideNav';
 import Link from 'next/link';
-import stable from '../public/images/dashboard/stable.png';
-import model from '../public/images/dashboard/customer.png';
-import salary from '../public/images/dashboard/salary.png';
-import founded from '../public/images/dashboard/year founded.png';
+import stable from '../../public/images/dashboard/stable.png';
+import model from '../../public/images/dashboard/customer.png';
+import salary from '../../public/images/dashboard/salary.png';
+import founded from '../../public/images/dashboard/year founded.png';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import { capitalize } from 'lodash';
 
 let email:any;
 let token:any;
@@ -28,11 +31,29 @@ if (typeof window !== "undefined") {
 const Venture: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<any>([]);
+    const [data, setData] = useState<any>([]);
+    const [year, setYear] = useState<number>();
     const dispatch = useAppDispatch();
     const user = useAppSelector(state => state.user.users);
     const social = useAppSelector(state => state.user.users.socials);
+    const router = useRouter();
+
     React.useEffect(() => {
         dispatch(fetchUser())
+        axios.get(`https://api.venturenation.co/api/v1/ventures/${router.query.venture}`, {
+        headers: {
+            Authorization:  `Bearer ${token}`
+        }}).then((res) => {
+            setData(res.data.data);
+            console.log(data);
+            let year = new Date(res.data.data.dateFounded).getFullYear();
+            setYear(year);
+            localStorage.setItem('slug', res.data.data.slug)
+        }
+        ).catch((err) => {
+            console.log(err)
+        }
+        )
     }, [])
     if (!user) {
         return <div>Loading...</div>;
@@ -61,18 +82,20 @@ const Venture: React.FC = () => {
                                 <Image src={image1} alt='venture logo' className={styles.venture__logo}/>
                                 <div className="d-flex float-end">
                                     <div className={styles.venture__btn}>
-                                        <Link href='/ventures/edit' className={`btn text-decoration px-3 py-2 btn-outline-${styles.clr}`}><i className="fa fa-edit" aria-hidden="true"></i> Edit Profile</Link>
+                                        <Link href={`/ventures/edit/${data.slug}`} className={`btn text-decoration px-3 py-2 btn-outline-${styles.clr}`}><i className="fa fa-edit" aria-hidden="true"></i> Edit Profile</Link>
                                     </div>
                                     <div className={styles.venture__btn}>
                                         <Link href='' className={`btn text-decoration px-3 py-2 btn-outline-${styles.clr}`}><i className="fa-regular fa-share-from-square" aria-hidden="true"></i> Share</Link>
                                     </div>
                                 </div>
-                                <h4>Venture Name</h4>
-                                <p className='text-muted'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores ex cupiditate deserunt laboriosam.</p>
+                                <h4>{data.name}</h4>
+                                <p className='text-muted'>{data.tagline}</p>
                                 <div className="">
                                     <div className="d-flex">
                                         Sector: <div className="">
-                                            <span className="badge rounded-pill bg-primary">Technology</span>
+                                            {data.sector?.map((item:any, index:any) => (                                               
+                                                <span className="badge rounded-pill bg-primary" key={index}>{item}</span>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
@@ -86,7 +109,7 @@ const Venture: React.FC = () => {
                                             <h5>Contact Info</h5>
                                         </div>
                                         <div className={styles.section__session__body}>
-                                            {
+                                            {/* {
                                                 user.phone?
                                                 <div className="p-2 px-4">
                                                     <Image src={phone} alt='phone icon'/> <span className='text-dark ps-1'>Phone</span>
@@ -94,17 +117,17 @@ const Venture: React.FC = () => {
                                                         <p className='ps-4'> {user.phone ? user.phone : '(+234) 809 000 0000'} </p>
                                                     </div>
                                                 </div>:""
-                                            }
+                                            } */}
                                             {
-                                                user.website?
+                                                data.link?
                                                 <div className="p-2 px-4">
                                                     <Image src={website} alt='phone icon'/> <span className='text-dark ps-1'>Website</span>
                                                     <div className="d-flex justify-content-between">
-                                                        <p className='ps-4'> {user.website ? user.website : 'samplewebsite.com'} </p>
+                                                        <p className='ps-4'> {data.link ? data.link : 'samplewebsite.com'} </p>
                                                     </div>
                                                 </div>:""
                                             }
-                                            {
+                                            {/* {
                                                 user.email?
                                                 <div className="p-2 px-4 mb-3">
                                                     <Image src={mail} alt='phone icon'/> <span className='text-dark ps-1'>Email address</span>
@@ -112,7 +135,7 @@ const Venture: React.FC = () => {
                                                         <p className='ps-4'> {user.email} </p>
                                                     </div>
                                                 </div>:""
-                                            }
+                                            } */}
                                         </div>
                                         <div className="d-flex">
                                             {
@@ -160,50 +183,59 @@ const Venture: React.FC = () => {
                         </div>
                     </div>
                     <div className="row my-4 justify-content-around">
-                        <div className="col-2 p-3 shadows d-flex justify-content-between">
+                        <div className="col-lg-2 col-sm-5 p-3 mb-3 shadows d-flex justify-content-between">
                             <div className="">
-                                <h6>Stable</h6>
-                                <p>Venture Stage</p>
+                                {data.stage? <h6>{capitalize(data.stage)}</h6> : <h6>NA</h6>}
+                                <p className='text-muted'>Stage</p>
                             </div>
                             <Image src={stable} alt='' />
                         </div>
-                        <div className="col-2 p-3 shadows d-flex justify-content-between">
+                        <div className="col-lg-2 col-sm-5 p-3 mb-3 shadows d-flex justify-content-between">
                             <div className="">
-                                <h6>B2B, B2B2C</h6>
-                                <p>Customer model</p>
+                                {data.businessModel?
+                                <div>
+                                    {data.businessModel?.map((item:any, index:any) => (                                               
+                                        <h6 className="badge text-dark" key={index}>{item}</h6>
+                                    ))}
+                                </div>:<h6>NA</h6>}
+                                <p className='text-muted'>Customer Model</p>
                             </div>
                             <Image src={model} alt='' />
                         </div>
-                        <div className="col-2 p-3 shadows d-flex justify-content-between">
+                        <div className="col-lg-2 col-sm-5 p-3 shadows d-flex justify-content-between">
                             <div className="">
-                                <h6>$ 53, 000</h6>
-                                <p>Average salary</p>
+                                {data.averageSalary?<h6>{data.averageSalary}</h6>:<h6>NA</h6>}
+                                <p className='text-muted'>Average salary</p>
                             </div>
                             <Image src={salary} alt='' />
                         </div>
-                        <div className="col-2 p-3 shadows d-flex justify-content-between">
+                        <div className="col-lg-2 col-sm-5 p-3 shadows d-flex justify-content-between">
                             <div className="">
-                                <h6>2019</h6>
-                                <p>Year founded</p>
+                                {data.dateFounded?
+                                <div>
+                                    <h6>{year}</h6>
+                                </div>
+                                :<h6>NA</h6>}
+                                <p className='text-muted'>Year founded</p>
                             </div>
                             <Image src={founded} alt='' />
                         </div>
                     </div>
                     <div className="row">
                         <h5>Full description</h5>
-                        <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur libero reiciendis, nisi obcaecati voluptas aliquid quam incidunt velit perferendis eos accusantium similique. Explicabo, est. Eius nisi sed ullam laudantium, sapiente voluptatem architecto eligendi? Dolore, et! Expedita quisquam voluptas fugit nobis odit adipisci quos est laboriosam qui maxime voluptates, mollitia perferendis debitis cupiditate minima fugiat. Voluptas laudantium repudiandae earum ipsam autem quos quod beatae doloribus minus, quia odit consectetur explicabo illo porro sapiente voluptatibus aperiam repellat delectus cupiditate exercitationem obcaecati in minima. Veniam eaque fugit nostrum. Consequuntur sed, cupiditate ducimus dicta minima, officia, neque dolore deleniti culpa facilis nulla impedit? Assumenda, suscipit. Amet, molestiae temporibus. Nesciunt, quos at id error atque, fugit facilis quidem omnis recusandae labore, cum similique voluptatibus saepe hic assumenda tenetur inventore. Praesentium id sunt eveniet asperiores harum neque quas nesciunt debitis. Excepturi labore ullam suscipit ratione illum optio quaerat vero, expedita iure dolorem aliquam, esse earum ducimus dolorum ipsum sint veniam quis. Saepe sapiente voluptate obcaecati asperiores odit, aliquid perferendis consectetur quo corporis et eos rem accusantium expedita laborum quidem atque soluta ex. Nihil dignissimos ratione illum soluta, omnis illo deleniti quae voluptatibus aspernatur nisi itaque quisquam dolor odio sunt laboriosam quia! Distinctio officiis amet tempore quae! </p>
+                        {data.description? <p dangerouslySetInnerHTML={{__html: data.description}} /> : <p>Description is not available</p>}
                     </div>
                     <div className="row justify-content-around">
                         <div className="col-6">
-                            <div className="d-flex justify-content-between py-4">
-                                <div className=" col-5 p-3 shadows d-flex justify-content-between">
+                            <div className="row justify-content-between py-4">
+                                <div className=" col-md-5 col-sm-10 p-3 shadows d-flex justify-content-between">
                                     <div className="">
                                         <h6>Stable</h6>
                                         <p>Venture Stage</p>
                                     </div>
                                     <Image src={stable} alt='' />
                                 </div>
-                                <div className=" col-5 p-3 shadows d-flex justify-content-between">
+                                <div className=" col-md-5 col-sm-10 p-3 shadows d-flex justify-content-between">
                                     <div className="">
                                         <h6>Stable</h6>
                                         <p>Venture Stage</p>
@@ -212,14 +244,14 @@ const Venture: React.FC = () => {
                                 </div>
                             </div>
                             <div className="d-flex justify-content-between">
-                                <div className=" col-5 p-3 shadows d-flex justify-content-between">
+                                <div className=" col-md-5 col-sm-10 p-3 shadows d-flex justify-content-between">
                                     <div className="">
                                         <h6>Stable</h6>
                                         <p>Venture Stage</p>
                                     </div>
                                     <Image src={stable} alt='' />
                                 </div>
-                                <div className=" col-5 p-3 shadows d-flex justify-content-between">
+                                <div className=" col-md-5 col-sm-10 p-3 shadows d-flex justify-content-between">
                                     <div className="">
                                         <h6>Stable</h6>
                                         <p>Venture Stage</p>

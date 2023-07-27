@@ -328,7 +328,7 @@ const AddVentures: React.FC = () => {
                                         <div>
                                             <button type="submit" className={styles.signup} disabled={isLoading} >{isLoading ? "Creating Venture..." : "Create Venture"}</button>
                                         </div>
-                                    </form>
+                                </form>
                             </div>
                         </div>
                     </div>

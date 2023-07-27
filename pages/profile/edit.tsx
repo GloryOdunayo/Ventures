@@ -75,11 +75,11 @@ const EditProfile: React.FC = () => {
             ...prevValues,
             [name]: value,
         }));
+        setFormValues((prevValues) => ({
+            ...prevValues,
+            skills: tags,
+        }));
     };
-    setFormValues((prevValues) => ({
-        ...prevValues,
-        skills: tags,
-    }));
 
 
     const handleSubmit = (e: React.FormEvent) => {

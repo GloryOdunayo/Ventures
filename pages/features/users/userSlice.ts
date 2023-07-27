@@ -8,6 +8,7 @@ type Social = {
     twitter: string;
 }
 type User = {
+    id: string,
     name: string,
     email: string,
     password: string,
@@ -35,6 +36,7 @@ type InitialState = {
 const initialState: InitialState = {
     loading: false,
     users: {
+        id:"",
         name: "",
         email: "",
         password: "",

@@ -1,7 +1,7 @@
 .section{
     background-color: white;
     margin-top: 3rem;
-    padding-left: 2rem;
+    padding-left: 8rem;
     padding-top: 3rem;
     & label {
         font-weight: bold;
@@ -27,7 +27,26 @@
     }
 
     & .service{
-        background: url();
+        // background: url();
+    }
+    & .change{
+        position: relative;
+        left: 48%;
+        bottom: 10rem;
+    }
+
+    & .banners{
+        width: 100%;
+        height: 15rem;
+    }
+    & .logo{
+        width: 7rem;
+        height: 7rem;
+        border-radius: 1rem;
+        border: 4px solid white;
+        position: relative;
+        top: -3.5rem;
+        left: 40%;
     }
 }
 
