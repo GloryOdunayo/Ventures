@@ -64,31 +64,31 @@ const EditVentures: React.FC = () => {
     React.useEffect(() => {
         dispatch(fetchUser())
         setBio(user.bio);
-        // axios.get(`https://api.venturenation.co/api/v1/ventures/${slug}`, {
-        // headers: {
-        //     Authorization:  `Bearer ${token}`
-        // }}).then((res) => {
-        //     setData(res.data.data);
-        //     setFormValues((prevValues) => ({
-        //         ...prevValues,
-        //         name: data.name,
-        //         location: data.location,
-        //         dateFounded: data.dateFounded,
-        //         description: data.description,
-        //         link: data.link,
-        //         sector: tag || data.sector,
-        //         tagline: data.tagline,
-        //         businessModel: tags|| data.businessModel,
-        //     }));
-        //     setStage(data.stage);
-        //     setRoe(data.description);
-        //     setTag(data.sector);
-        //     setTags(data.businessModel);
-        // }
-        // ).catch((err) => {
-        //     console.log(err)
-        // }
-        // )
+        axios.get(`https://api.venturenation.co/api/v1/ventures/${slug}`, {
+        headers: {
+            Authorization:  `Bearer ${token}`
+        }}).then((res) => {
+            setData(res.data.data);
+            setFormValues((prevValues) => ({
+                ...prevValues,
+                name: data.name,
+                location: data.location,
+                dateFounded: data.dateFounded,
+                description: data.description,
+                link: data.link,
+                sector: tag || data.sector,
+                tagline: data.tagline,
+                businessModel: tags|| data.businessModel,
+            }));
+            setStage(data.stage);
+            setRoe(data.description);
+            setTag(data.sector);
+            setTags(data.businessModel);
+        }
+        ).catch((err) => {
+            console.log(err)
+        }
+        )
     }, [])
 
     if(slug) {
