@@ -6,10 +6,8 @@ import styles from '../../styles/Ventures.module.scss';
 import phone from '../../public/images/dashboard/call.png';
 import website from '../../public/images/dashboard/web.png';
 import mail from '../../public/images/dashboard/mail.png';
-import { fetchUser } from '../features/users/userSlice';
 import company2 from '../public/images/dashboard/company2.png';
 import image1 from '../../public/images/dashboard/image 1.png';
-import { useAppDispatch, useAppSelector } from '../hooks';
 import Nav from '../../components/Nav';
 import SideNav from '../../components/SideNav';
 import Link from 'next/link';
@@ -20,6 +18,11 @@ import founded from '../../public/images/dashboard/year founded.png';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { capitalize } from 'lodash';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../redux/store';
+import { fetchUser } from '../redux/userSlide';
+import { RootState } from '../redux/store';
+import { User } from '../redux/types';
 
 let email:any;
 let token:any;
@@ -33,9 +36,9 @@ const Venture: React.FC = () => {
     const [errors, setErrors] = useState<any>([]);
     const [data, setData] = useState<any>([]);
     const [year, setYear] = useState<number>();
-    const dispatch = useAppDispatch();
-    const user = useAppSelector(state => state.user.users);
-    const social = useAppSelector(state => state.user.users.socials);
+    const dispatch = useDispatch<AppDispatch>();
+    const user = useSelector<RootState, User>((state) => state.user.users);
+    const social = user.socials
     const router = useRouter();
 
     React.useEffect(() => {

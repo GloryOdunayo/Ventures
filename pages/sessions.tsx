@@ -3,10 +3,13 @@ import Head from "next/head";
 import { useState } from "react";
 import Nav from '../components/Nav';
 import styles from '../styles/Sessions.module.scss';
-import { fetchUser } from './features/users/userSlice';
-import { useAppDispatch, useAppSelector } from './hooks';
 import SideNav from '../components/SideNav';
 import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from './redux/store';
+import { fetchUser } from './redux/userSlide';
+import { RootState } from './redux/store';
+import { User } from './redux/types';
 import Link from 'next/link';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -56,10 +59,9 @@ interface TabPanelProps {
 const Sessions: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<any>([]);
-    const dispatch = useAppDispatch();
     const router = useRouter();
-    const user = useAppSelector(state => state.user.users);
-    const social = useAppSelector(state => state.user.users.socials);
+    const dispatch = useDispatch<AppDispatch>();
+    const user = useSelector<RootState, User>((state) => state.user.users);
     React.useEffect(() => {
         dispatch(fetchUser())
     }, [])

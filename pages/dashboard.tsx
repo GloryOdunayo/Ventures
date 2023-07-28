@@ -25,6 +25,11 @@ import urban from '../public/images/dashboard/urban.png';
 import wild from '../public/images/dashboard/wild.png';
 import home from '../public/images/dashboard/home.png';
 import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from './redux/store';
+import { fetchUser } from './redux/userSlide';
+import { RootState } from './redux/store';
+import { User } from './redux/types';
 
 let token: any;
 let email: any

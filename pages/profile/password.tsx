@@ -12,8 +12,11 @@ import SideNav from '../../components/SideNav';
 import styles from '../../styles/Profile.module.scss';
 import strong from '../../public/images/landingPage/strong.png';
 import Profile from '../../components/Profile';
-import { fetchUser } from '.././features/users/userSlice';
-import { useAppDispatch, useAppSelector } from '../hooks';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../redux/store';
+import { fetchUser } from '../redux/userSlide';
+import { RootState } from '../redux/store';
+import { User } from '../redux/types';
 
 interface FormValues {
     currentPassword: string;
@@ -55,8 +58,8 @@ const EditPassword: React.FC = () => {
     const [progressColor, setProgressColor] = useState<string>("#DC2626");
     const [progressStrength, setProgressStrength] = useState<string>("Weak");
     const [progress, setProgress] = useState<number>();
-    const dispatch = useAppDispatch();
-    const user = useAppSelector(state => state.user.users);
+    const dispatch = useDispatch<AppDispatch>();
+    const user = useSelector<RootState, User>((state) => state.user.users);
     React.useEffect(() => {
         dispatch(fetchUser())
     }, [])

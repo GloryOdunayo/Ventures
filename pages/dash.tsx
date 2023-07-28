@@ -24,9 +24,7 @@ import SideNav from '../components/SideNav';
 import urban from '../public/images/dashboard/urban.png';
 import wild from '../public/images/dashboard/wild.png';
 import home from '../public/images/dashboard/home.png';
-import { useAppDispatch, useAppSelector } from './hooks';
 import { useRouter } from 'next/router';
-import { fetchCourse } from './features/courses/courseSlice';
 
 let token: any;
 let email: any
@@ -36,7 +34,6 @@ if (typeof window !== "undefined") {
 }
 
 const Dashboard1: React.FC = () => {
-    const dispatch = useAppDispatch();
     // const isLoading = useAppSelector(state => state.course.loading);
     // const course = useAppSelector(state => state.course.courses);
     const router = useRouter();

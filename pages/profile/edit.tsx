@@ -11,8 +11,11 @@ import SideNav from '../../components/SideNav';
 import styles from '../../styles/Profile.module.scss';
 import profile from '../../public/images/dashboard/image change.png';
 import Profile from '../../components/Profile';
-import { fetchUser } from '.././features/users/userSlice';
-import { useAppDispatch, useAppSelector } from '../hooks';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../redux/store';
+import { fetchUser } from '../redux/userSlide';
+import { RootState } from '../redux/store';
+import { User } from '../redux/types';
 import { capitalize } from 'lodash';
 import TagsInput from '../../components/TagsInput';
 
@@ -42,8 +45,8 @@ const EditProfile: React.FC = () => {
     const [bio, setBio] = useState('');
     const [tags, setTags] = useState<any>();
     // const [skills, setSkills] = useState<any>('');
-    const dispatch = useAppDispatch();
-    const user = useAppSelector(state => state.user.users);
+    const dispatch = useDispatch<AppDispatch>();
+    const user = useSelector<RootState, User>((state) => state.user.users);
     React.useEffect(() => {
         dispatch(fetchUser())
         setBio(user.bio);

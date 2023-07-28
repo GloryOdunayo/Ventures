@@ -16,8 +16,11 @@ import location2 from '../public/images/dashboard/location2.png';
 import team from '../public/images/dashboard/team.png';
 import company from '../public/images/dashboard/company.png';
 import company2 from '../public/images/dashboard/company2.png';
-import { fetchUser } from './features/users/userSlice';
-import { useAppDispatch, useAppSelector } from './hooks';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from './redux/store';
+import { fetchUser } from './redux/userSlide';
+import { RootState } from './redux/store';
+import { User } from './redux/types';
 import { useRouter } from 'next/router';
 import { capitalize } from 'lodash';
 // let token: any;
@@ -28,10 +31,10 @@ if (typeof window !== "undefined") {
 }
 
 const Profile: React.FC = () => {
-    const dispatch = useAppDispatch();
-    const isLoading = useAppSelector(state => state.user.loading);
-    const user = useAppSelector(state => state.user.users);
-    const social = useAppSelector(state => state.user.users.socials);
+    const dispatch = useDispatch<AppDispatch>();
+    const user = useSelector<RootState, User>((state) => state.user.users);
+    // const isLoading = useSelector<RootState, User>((state) => state.user.loading);
+    const social = user.socials;
     const router = useRouter();
     // let dateOfBirth:any = user.dob.toLocaleDateString();
 

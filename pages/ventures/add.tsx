@@ -8,8 +8,6 @@ import twitter from '../../public/images/dashboard/twitter.png';
 import instagram from '../../public/images/dashboard/instagram.png';
 import share from '../../public/images/dashboard/share.png';
 import styles from '../../styles/EditVenture.module.scss';
-import { fetchUser } from '../features/users/userSlice';
-import { useAppDispatch, useAppSelector } from '../hooks';
 import Link from 'next/link';
 import Nav from '../../components/Nav';
 import axios, { AxiosResponse } from 'axios';
@@ -60,11 +58,11 @@ const AddVentures: React.FC = () => {
     const [errors, setErrors] = useState<any>([]);
     const [tags, setTags] = useState<any>();
     const [tag, setTag] = useState<any>();
-    const dispatch = useAppDispatch();
-    const user = useAppSelector(state => state.user.users);
-    React.useEffect(() => {
-        dispatch(fetchUser())
-    }, [])
+    // const dispatch = useAppDispatch();
+    // const user = useAppSelector(state => state.user.users);
+    // React.useEffect(() => {
+    //     dispatch(fetchUser())
+    // }, [])
     const [formData, setFormData] = useState<Socials>({
         facebook: "",
         instagram: "",
@@ -131,9 +129,9 @@ const AddVentures: React.FC = () => {
             setIsLoading(false);
         })
     }
-    if (!user) {
-        return <div>Loading...</div>; // Display loading indicator while fetching user data
-    }
+    // if (!user) {
+    //     return <div>Loading...</div>; // Display loading indicator while fetching user data
+    // }
     return (
         <>
             <Head>
