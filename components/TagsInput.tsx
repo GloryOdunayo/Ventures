@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from '../pages/hooks';
-import { fetchUser } from '../pages/features/users/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUser } from '../pages/redux/userSlide';
+import { RootState } from '../pages/redux/store';
+import { User } from '../pages/redux/types';
+import { AppDispatch } from '../pages/redux/store';
 
 
 function TagsInput({ selectedTags, value, error }: any) {
     const [tags, setTags] = useState(value ? value : []);
 
-    const dispatch = useAppDispatch();
-    const user = useAppSelector(state => state.user.users);
+    const dispatch = useDispatch<AppDispatch>();
+    const user = useSelector<RootState, User>((state) => state.user.users);
     React.useEffect(() => {
         dispatch(fetchUser())
         setTags(user.skills);
