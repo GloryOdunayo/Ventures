@@ -24,9 +24,7 @@ import SideNav from '../components/SideNav';
 import urban from '../public/images/dashboard/urban.png';
 import wild from '../public/images/dashboard/wild.png';
 import home from '../public/images/dashboard/home.png';
-import { useAppDispatch, useAppSelector } from './hooks';
 import { useRouter } from 'next/router';
-import { fetchCourse } from './features/courses/courseSlice';
 
 let token: any;
 let email: any

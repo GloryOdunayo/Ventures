@@ -4,8 +4,11 @@ import Image from 'next/image'
 import { useState } from "react";
 import Nav from '../components/Nav';
 import styles from '../styles/EditVenture.module.scss';
-import { fetchUser } from './features/users/userSlice';
-import { useAppDispatch, useAppSelector } from './hooks';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from './redux/store';
+import { fetchUser } from './redux/userSlide';
+import { RootState } from './redux/store';
+import { User } from './redux/types';
 
 let email:any;
 let token:any;
@@ -17,12 +20,12 @@ if (typeof window !== "undefined") {
 const Services: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<any>([]);
-    const dispatch = useAppDispatch();
-    const user = useAppSelector(state => state.user.users);
-    const social = useAppSelector(state => state.user.users.socials);
+    const dispatch = useDispatch<AppDispatch>();
+    const user = useSelector<RootState, User>((state) => state.user.users);
+    const social = user.socials;
     React.useEffect(() => {
         dispatch(fetchUser())
-    }, [])
+    }, [dispatch])
     
 
     if (!user) {

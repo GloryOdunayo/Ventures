@@ -7,21 +7,24 @@ import styles from '../styles/Ventures.module.scss';
 import phone from '../public/images/dashboard/call.png';
 import website from '../public/images/dashboard/web.png';
 import mail from '../public/images/dashboard/mail.png';
-import { fetchUser } from './features/users/userSlice';
-import { useAppDispatch, useAppSelector } from './hooks';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from './redux/store';
 import Nav from '../components/Nav';
 import SideNav from '../components/SideNav';
 import Link from 'next/link';
 import axios from 'axios';
 import axiosInstance from './features/axios';
+import { fetchUser } from './redux/userSlide';
+import { RootState } from './redux/store';
+import { User } from './redux/types';
 
 const Ventures: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<any>([]);
-    const dispatch = useAppDispatch();
     const [data, setData] = useState<any>([]);
-    const user = useAppSelector(state => state.user.users);
-    const social = useAppSelector(state => state.user.users.socials);
+    const dispatch = useDispatch<AppDispatch>();
+    const user = useSelector<RootState, User>((state) => state.user.users);
+    const social = user.socials;
     React.useEffect(() => {
         dispatch(fetchUser());
         axiosInstance.get(`/ventures`).then((res) => {
@@ -29,7 +32,7 @@ const Ventures: React.FC = () => {
         }).catch((err) => {
             console.log(err)
         })
-    }, [])
+    }, [dispatch])
     // if (!user) {
     //     return <div>Loading...</div>;
     // }

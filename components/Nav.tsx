@@ -3,12 +3,15 @@ import Image from 'next/image';
 import logo from '../public/images/landingPage/nav-logo.png';
 import React from "react";
 import profile from '../public/images/dashboard/frame.png';
-import { useAppDispatch, useAppSelector } from "../pages/hooks";
-import { fetchUser } from "../pages/features/users/userSlice";
+import { fetchUser } from '../pages/redux/userSlide';
+import { RootState } from '../pages/redux/store';
+import { User } from '../pages/redux/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../pages/redux/store';
 
 const Nav: React.FC = () => {
-    const dispatch = useAppDispatch();
-    const user = useAppSelector(state => state.user.users)
+    const dispatch = useDispatch<AppDispatch>();
+    const user = useSelector<RootState, User>((state) => state.user.users);
     React.useEffect(() => {
         dispatch(fetchUser())
     }, [])
