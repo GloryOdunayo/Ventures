@@ -18,7 +18,7 @@ const Venture: React.FC = () => {
             <div className=''>
                 <div className={styles.sidebar}>
                     <div className={styles.pad}>
-                        <Link href={`/ventures/${router.query.id}`}><Image src={left} alt='' onClick={back} className='editImg'/></Link>
+                        <Link href={`/ventures`}><Image src={left} alt='' onClick={back} className='editImg'/></Link>
                         {/* <Image src={left} alt='' onClick={back} className='editImg'/> */}
                         <span className='edit'>Edit Venture</span>
                         <p className='pt-2' style={{
@@ -27,10 +27,10 @@ const Venture: React.FC = () => {
                     </div>
 
                     <div className={`text-decoration-none ${
-                        router.pathname === '/Venture/edit' && 'active' ? 'activePro' : 'activeProNot'
+                        router.pathname === `/ventures/edit/${router.query.id}` && 'active' ? 'activePro' : 'activeProNot'
                     }`}>
-                        <Link href="/Venture/edit" className={`text-decoration-none ${
-                            router.pathname === '/Venture/edit' && 'active' ? 'activePro' : 'activeNt'
+                        <Link href={`/ventures/edit/${router.query.id}`} className={`text-decoration-none ${
+                            router.pathname === `/ventures/edit/${router.query.id}` && 'active' ? 'activePro' : 'activeNt'
                         }`}>
                             <div className="d-flex justify-content-between px-3 pt-3">
                                 <p className=''>General</p>
@@ -39,10 +39,10 @@ const Venture: React.FC = () => {
                         </Link>
                     </div>
                     <div className={`text-decoration-none ${
-                        router.pathname === '/Venture/overview' && 'active' ? 'activePro' : 'activeProNot'
+                        router.pathname === '/venture/overview' && 'active' ? 'activePro' : 'activeProNot'
                     }`}>
-                        <Link href='/Venture/overview' className={`text-decoration-none ${
-                            router.pathname === '/Venture/overview' && 'active' ? 'activePro' : 'activeNt'
+                        <Link href='/venture/overview' className={`text-decoration-none ${
+                            router.pathname === '/venture/overview' && 'active' ? 'activePro' : 'activeNt'
                         }`}>
                             <div className="d-flex justify-content-between px-3 pt-3">
                                 <p>Overview</p>
@@ -51,10 +51,10 @@ const Venture: React.FC = () => {
                         </Link>
                     </div>
                     <div className={`text-decoration-none ${
-                        router.pathname === '/Venture/team' && 'active' ? 'activePro' : 'activeProNot'
+                        router.pathname === '/venture/team' && 'active' ? 'activePro' : 'activeProNot'
                     }`}>
-                        <Link href='/Venture/team' className={`text-decoration-none ${
-                            router.pathname === '/Venture/team' && 'active' ? 'activePro' : 'activeNt'
+                        <Link href='/venture/team' className={`text-decoration-none ${
+                            router.pathname === '/venture/team' && 'active' ? 'activePro' : 'activeNt'
                         }`}>
                             <div className="d-flex justify-content-between px-3 pt-3">
                                 <p>Team members</p>
@@ -63,10 +63,10 @@ const Venture: React.FC = () => {
                         </Link>
                     </div>
                     <div className={`text-decoration-none ${
-                        router.pathname === '/Venture/social' && 'active' ? 'activePro' : 'activeProNot'
+                        router.pathname === '/venture/social' && 'active' ? 'activePro' : 'activeProNot'
                     }`}>
-                        <Link href='/Venture/social' className={`text-decoration-none ${
-                            router.pathname === '/Venture/social' && 'active' ? 'activePro' : 'activeNt'
+                        <Link href='/venture/social' className={`text-decoration-none ${
+                            router.pathname === '/venture/social' && 'active' ? 'activePro' : 'activeNt'
                         }`}>
                             <div className="d-flex justify-content-between px-3 pt-3">
                                 <p>Social profiles</p>

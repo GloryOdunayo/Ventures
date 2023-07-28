@@ -20,6 +20,7 @@ import "react-quill/dist/quill.snow.css";
 import TagsDropdown from '../../../components/TagsDropdown';
 import TagDropdown from '../../../components/TagDropdown';
 import Venture from '../../../components/Venture';
+import axiosInstance from '../../features/axios';
 
 interface FormValues {
     name: string;
@@ -55,6 +56,8 @@ const EditVentures: React.FC = () => {
     const [currency, setCurrency] = useState('choose');
     const dispatch = useAppDispatch();
     const router = useRouter();
+    const image = React.useRef<any>(null);
+    const logo = React.useRef<any>(null);
 
     let slug:any;
     if (typeof window !== "undefined") {
@@ -126,13 +129,79 @@ const EditVentures: React.FC = () => {
             skills: tags,
         }));
     };
+    console.log(slug);
+    
+    const upload= async ()=>{
+
+        // const handleBannerSubmit = async () => {
+            const bannerImg = image?.current.files[0];
+        
+            const formData = new FormData();
+            formData.append("image", bannerImg);
+            // dispatch(updateUserbanner(formData));
+            image.current.value = "";
+            axiosInstance
+                .patch(`/ventures/${slug}/update-banner`, formData)
+                .then((res: any) => {
+                    console.log(res.data);
+                    
+                    // NotifySuccess(
+                    //   res?.data?.message
+                    //     ? res?.data?.message
+                    //     : "Banner updated successfully"
+                    // );
+                    window.location.reload();
+                })
+                .catch((err: any) =>
+                    err?.response?.data?.errors?.map((item: any) => {
+                    //   NotifyError(
+                    //     item?.message
+                    //       ? item?.message
+                    //       : "Something went wrong please try again"
+                    //   );
+                    setErrors(item?.message);
+                })
+              );
+    };     
+    const uploadLogo= async ()=>{
+
+        // const handleBannerSubmit = async () => {
+        const bannerImg = logo?.current.files[0];
+        
+        const formData = new FormData();
+        formData.append("image", bannerImg);
+            // dispatch(updateUserbanner(formData));
+        logo.current.value = "";
+        axiosInstance
+            .patch(`/ventures/${slug}/update-logo`, formData)
+            .then((res: any) => {
+                console.log(res.data);
+                    // NotifySuccess(
+                    //   res?.data?.message
+                    //     ? res?.data?.message
+                    //     : "Banner updated successfully"
+                    // );
+                window.location.reload();
+            })
+            .catch((err: any) =>
+                err?.response?.data?.errors?.map((item: any) => {
+                    //   NotifyError(
+                    //     item?.message
+                    //       ? item?.message
+                    //       : "Something went wrong please try again"
+                    //   );
+                setErrors(item?.message);
+            })
+        );
+    };     
+    
 
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
         // console.log(formValues);
-        axios.patch(`https://api.venturenation.co/api/v1/ventures/${router.query.venture}`, formValues, {
+        axiosInstance.patch(`/ventures/${router.query.venture}`, formValues, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }}
@@ -168,10 +237,17 @@ const EditVentures: React.FC = () => {
                                 </div>
                                 <div className='mt-3 px-5'>
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img src={user.avatar} alt='Profile Image' className={styles.banners} />
-                                    <Image src={profile} alt='' className={styles.change} />
+                                    <img src={data.banner} alt='Profile Image' className={styles.banners} />
+                                    <label htmlFor="image" className={styles.change} onChange={upload} ref={image} >
+                                        <Image src={profile} alt=''  />
+                                    </label>
+                                    <input type="file" className='border-0' name="image" id="image" style={{display:"none"}} ref={image} onChange={upload} />
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img src={user.avatar} alt="venture-logo" className={styles.logo} />
+                                    <img src={data.logo} alt="venture-logo" className={styles.logo} />
+                                    <label htmlFor="logo" className={styles.chan} onChange={uploadLogo} ref={logo} >
+                                        <Image src={profile} alt=''  />
+                                    </label>
+                                    <input type="file" className='border-0' name="logo" id="logo" style={{display:"none"}} ref={logo} onChange={uploadLogo} />
                                 </div>
                                 <div className="shadows">
                                     <div className="col-10 mx-auto">
