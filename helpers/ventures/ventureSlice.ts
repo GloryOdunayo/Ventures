@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import Venture from "../../ventures/[venture]";
+import Venture from "../../pages/ventures/[venture]";
 
 
 type Venture = {
